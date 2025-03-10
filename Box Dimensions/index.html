@@ -482,11 +482,17 @@
   <!-- Check Overlay -->
   <div id="checkOverlay" class="overlay hidden">
     <div class="overlay-content">
-      <h2>Check Your Answer</h2>
+      <h2>Volume Conservation Challenge</h2>
       <div class="slider-container">
-        <input type="range" id="checkSlider" class="slider" min="0" max="10" value="0">
+        <input type="range" id="checkSlider" class="slider" min="0" max="3" value="0" step="1">
+        <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 5px;">
+          <span>400 cm³</span>
+          <span>600 cm³</span>
+          <span>800 cm³</span>
+          <span>1000 cm³</span>
+        </div>
       </div>
-      <h3 id="checkStepTitle" class="check-step-title">Check Your Solution</h3>
+      <h3 id="checkStepTitle" class="check-step-title">What happens when the volume increases?</h3>
       <div id="checkVisualization" class="check-canvas-container">
         <!-- Check visualization canvas -->
         <canvas id="checkZdogCanvas" width="400" height="400"></canvas>
@@ -496,7 +502,7 @@
           <button id="checkAutoRotateBtn">Auto Rotate</button>
         </div>
       </div>
-      <button id="resetButton" class="nav-btn">Reset</button>
+      <button id="resetButton" class="nav-btn">Go Back</button>
     </div>
   </div>
   
@@ -577,6 +583,43 @@
       "shapes": [
         {
           "type": "Group",
+          "id": "original_cuboid_group",
+          "options": {
+            "translate": {
+              "x": -100,
+              "y": 0,
+              "z": 0
+            }
+          },
+          "children": [
+            {
+              "type": "Box",
+              "id": "original_cuboid",
+              "options": {
+                "width": 80,
+                "height": 60,
+                "depth": 120,
+                "stroke": 0,
+                "fill": true,
+                "color": "#f47983"
+              }
+            },
+            {
+              "type": "Box",
+              "id": "original_cuboid_wireframe",
+              "options": {
+                "width": 80,
+                "height": 60,
+                "depth": 120,
+                "stroke": 2.5,
+                "fill": false,
+                "color": "#000000"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Group",
           "id": "new_cuboid_group",
           "options": {
             "translate": {
@@ -595,7 +638,7 @@
                 "depth": 60,
                 "stroke": 0,
                 "fill": true,
-                "color": "#7f8c8d"
+                "color": "#3498db"
               }
             },
             {
@@ -619,32 +662,37 @@
             "path": [
               {
                 "move": {
-                  "x": 0,
-                  "y": 0
+                  "x": -50,
+                  "y": 0,
+                  "z": 0
                 }
               },
               {
                 "line": {
                   "x": 50,
-                  "y": 0
+                  "y": 0,
+                  "z": 0
                 }
               },
               {
                 "line": {
                   "x": 45,
-                  "y": -5
+                  "y": -5,
+                  "z": 0
                 }
               },
               {
                 "move": {
                   "x": 50,
-                  "y": 0
+                  "y": 0,
+                  "z": 0
                 }
               },
               {
                 "line": {
                   "x": 45,
-                  "y": 5
+                  "y": 5,
+                  "z": 0
                 }
               }
             ],
@@ -1757,13 +1805,19 @@
             return illo.shapes[parentId];
           }
           
-          // Function to display a specific Zdog scene
+          // Function to display a consistent scene throughout
           function displayZdogScene(section, index) {
-            const key = `${section}_${index}`;
-            
-            // Check if we need to reinitialize the scene
-            if (zdogSceneData.scenes[key]) {
-              // If this is the same scene as before, save current rotation first
+            // For comprehend and compute sections, we'll use the same scene with both boxes
+            if (section === 'comprehend' || section === 'compute') {
+              const key = 'comprehend_2'; // Using this scene as the base since it has both boxes
+              
+              // If we already have this scene, don't reinitialize
+              if (key === currentSceneKey && currentScene && currentScene.illo) {
+                console.log(`Scene ${key} already displayed, keeping rotation`);
+                return;
+              }
+              
+              // Save current rotation if we have a scene
               if (currentScene && currentScene.illo) {
                 lastRotation = {
                   x: currentScene.illo.rotate.x,
@@ -1772,21 +1826,60 @@
                 };
               }
               
-              // If the current scene is the same as the new one, don't reinitialize
-              // This prevents "jerky" rotation when the scene content hasn't changed
-              if (key === currentSceneKey) {
-                console.log(`Scene ${key} already displayed, keeping rotation`);
-                return;
+              // Save current scene key
+              currentSceneKey = key;
+              
+              // Initialize the scene
+              initZdogScene(key);
+              console.log(`Displayed consistent scene for ${section}`);
+            } 
+            // For check section, use the dedicated visualization
+            else if (section === 'check') {
+              const key = `${section}_1`;
+              
+              // Save current rotation if we have a scene
+              if (currentScene && currentScene.illo) {
+                lastRotation = {
+                  x: currentScene.illo.rotate.x,
+                  y: currentScene.illo.rotate.y,
+                  z: currentScene.illo.rotate.z
+                };
               }
               
               // Save current scene key
               currentSceneKey = key;
               
-              // Initialize the new scene
-              initZdogScene(key);
-              console.log(`Displayed Zdog scene: ${key}`);
-            } else {
-              console.warn(`Zdog scene not found: ${key}`);
+              // Initialize the scene
+              if (zdogSceneData.scenes[key]) {
+                initZdogScene(key);
+                console.log(`Displayed check scene: ${key}`);
+              } else {
+                console.warn(`Check scene not found: ${key}`);
+              }
+            }
+            // For connect section, use the connect scene
+            else if (section === 'connect') {
+              const key = `${section}_1`;
+              
+              // Save current rotation if we have a scene
+              if (currentScene && currentScene.illo) {
+                lastRotation = {
+                  x: currentScene.illo.rotate.x,
+                  y: currentScene.illo.rotate.y,
+                  z: currentScene.illo.rotate.z
+                };
+              }
+              
+              // Save current scene key
+              currentSceneKey = key;
+              
+              // Initialize the scene
+              if (zdogSceneData.scenes[key]) {
+                initZdogScene(key);
+                console.log(`Displayed connect scene: ${key}`);
+              } else {
+                console.warn(`Connect scene not found: ${key}`);
+              }
             }
           }
           
@@ -1926,8 +2019,8 @@
               // Show given section
               givenSection.style.display = 'block';
               
-              // Show visualization area when given section is displayed
-              visualizationArea.classList.remove('hidden');
+              // Keep visualization area hidden during Given step
+              visualizationArea.classList.add('hidden');
               
               // Get all highlighted given elements
               const givenElements = document.querySelectorAll('.highlight-given');
@@ -1950,14 +2043,14 @@
                 });
               }
               
-              // Update visualization
-              displayZdogScene('comprehend', 2);
-              
               comprehendSubStep = 1;
             } 
             else if (comprehendSubStep === 1) {
               // Show to find section
               toFindSection.style.display = 'block';
+              
+              // Show visualization area when the To Find section is displayed
+              visualizationArea.classList.remove('hidden');
               
               // Get all highlighted to-find elements
               const toFindElements = document.querySelectorAll('.highlight-tofind');
@@ -1981,7 +2074,7 @@
               }
               
               // Update visualization
-              displayZdogScene('comprehend', 3);
+              displayZdogScene('comprehend', 2);
               
               comprehendSubStep = 2;
               
@@ -2281,10 +2374,9 @@
             }
           }
           
-          // Check Step
+          // Check Step - Direct volume visualization
           let checkScene = null;
           let checkIsSpinning = true;
-          let checkSceneKey = null; // Track current check scene key to prevent unnecessary resets
           let checkLastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation for check scenes
           
           function initCheckSlider() {
@@ -2309,12 +2401,15 @@
               checkAutoRotateBtn.textContent = checkIsSpinning ? 'Stop Rotation' : 'Auto Rotate';
             });
             
+            // Create the initial box visualization
+            createVolumeBoxVisualization();
+            
             // Set up check slider
-            checkSlider.oninput = updateCheckVisualization;
-            updateCheckVisualization();
+            checkSlider.oninput = updateVolumeBox;
+            updateVolumeBox(); // Initialize with first volume
           }
           
-          function initCheckZdogScene(sceneKey) {
+          function createVolumeBoxVisualization() {
             // Clear any existing animation
             if (checkScene && checkScene.animation) {
               cancelAnimationFrame(checkScene.animation);
@@ -2326,19 +2421,125 @@
             const illo = new Zdog.Illustration({
               element: checkZdogCanvas,
               dragRotate: true,
-              // Use saved rotation if available, otherwise use default isometric rotation
-              rotate: { ...checkLastRotation }, // Apply the last known rotation
-              // Stop spinning when dragged
+              rotate: { ...checkLastRotation },
               onDragStart: function() {
                 checkIsSpinning = false;
               }
             });
             
-            // Load the scene configuration
-            const sceneConfig = zdogSceneData.scenes[sceneKey] || { shapes: [] };
+            // Create a box group
+            const boxGroup = new Zdog.Group({
+              addTo: illo,
+              updateSort: true
+            });
             
-            // Create shapes based on configuration
-            createShapesFromConfig(illo, sceneConfig);
+            // Create the box
+            const box = new Zdog.Box({
+              addTo: boxGroup,
+              width: 160, // 16 cm × 10 units/cm
+              height: 50,  // Will be adjusted based on volume
+              depth: 50,   // Will be adjusted based on volume
+              stroke: 0,
+              fill: true,
+              color: '#3498db',
+              frontFace: '#3498db',
+              rearFace: '#2980b9',
+              leftFace: '#2980b9',
+              rightFace: '#3498db',
+              topFace: '#4ca3db',
+              bottomFace: '#246a9c'
+            });
+            
+            // Add wireframe
+            const wireframe = new Zdog.Box({
+              addTo: boxGroup,
+              width: 160,
+              height: 50,
+              depth: 50,
+              stroke: 2.5,
+              fill: false,
+              color: '#000000'
+            });
+            
+            // No reference lines or markers for cleaner visualization
+            const referenceMarkers = [];
+            
+            // Reference grid with light gray lines
+            const gridSize = 200;
+            const gridDivisions = 10;
+            const step = gridSize / gridDivisions;
+            
+            // Create grid group
+            const grid = new Zdog.Group({
+              addTo: illo,
+              translate: { y: 70 }, // Place grid slightly below the center
+              updateSort: true
+            });
+            
+            // Add grid lines along X axis
+            for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
+              new Zdog.Shape({
+                addTo: grid,
+                path: [
+                  { x: -gridSize/2, y: 0, z: i * step },
+                  { x: gridSize/2, y: 0, z: i * step }
+                ],
+                stroke: 1,
+                color: '#DDDDDD'
+              });
+            }
+            
+            // Add grid lines along Z axis
+            for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
+              new Zdog.Shape({
+                addTo: grid,
+                path: [
+                  { x: i * step, y: 0, z: -gridSize/2 },
+                  { x: i * step, y: 0, z: gridSize/2 }
+                ],
+                stroke: 1,
+                color: '#DDDDDD'
+              });
+            }
+            
+            // Add X, Y, Z axes for reference
+            // X axis (red)
+            new Zdog.Shape({
+              addTo: grid,
+              path: [
+                { x: 0, y: 0, z: 0 },
+                { x: gridSize/2 + 20, y: 0, z: 0 }
+              ],
+              stroke: 2,
+              color: '#FF5555'
+            });
+            
+            // Y axis (green)
+            new Zdog.Shape({
+              addTo: grid,
+              path: [
+                { x: 0, y: 0, z: 0 },
+                { x: 0, y: -gridSize/2 - 20, z: 0 }
+              ],
+              stroke: 2,
+              color: '#55FF55'
+            });
+            
+            // Z axis (blue)
+            new Zdog.Shape({
+              addTo: grid,
+              path: [
+                { x: 0, y: 0, z: 0 },
+                { x: 0, y: 0, z: gridSize/2 + 20 }
+              ],
+              stroke: 2,
+              color: '#5555FF'
+            });
+            
+            // Store references for animation
+            illo.box = box;
+            illo.wireframe = wireframe;
+            illo.referenceMarkers = referenceMarkers;
             
             // Animation loop
             function animate() {
@@ -2358,87 +2559,79 @@
             return checkScene;
           }
           
-          function updateCheckVisualization() {
-            // Define our meaningful check steps with actual content
-            const checkSteps = [
-              {volume: 400, length: 5, scene: 'check_1'},
-              {volume: 484, length: 5.5, scene: 'check_3'},
-              {volume: 576, length: 6, scene: 'check_5'},
-              {volume: 676, length: 6.5, scene: 'check_1'},
-              {volume: 784, length: 7, scene: 'check_3'}
-            ];
+          function updateVolumeBox() {
+            // Get direct step from slider (now 0-3)
+            const stepIndex = parseInt(checkSlider.value);
+            console.log("Current step index:", stepIndex);
             
-            // Map slider value to check steps array index (divide slider range into equal segments)
-            const value = parseInt(checkSlider.value);
-            const stepIndex = Math.min(Math.floor(value / (10 / checkSteps.length)), checkSteps.length - 1);
+            // Predefined volume steps
+            const volumeSteps = [400, 600, 800, 1000];
+            const volume = volumeSteps[stepIndex];
+            console.log("Current volume:", volume);
             
-            // Get step data and scene key
-            const step = checkSteps[stepIndex];
-            const key = step.scene;
+            // Calculate length based on the formula V = w × l × h = 16 × l × l (since l = h)
+            // So l = sqrt(V / 16)
+            const width = 16; // Fixed width
+            const length = Math.sqrt(volume / width);
+            console.log("Calculated length/height:", length);
             
-            // Dynamically adjust the box sizes based on the step values
-            if (checkScene && checkScene.illo && checkScene.illo.shapes) {
-              // Find the new box shape if it exists
-              if (checkScene.illo.shapes.new_box) {
-                // Update the box dimensions based on the length value
-                checkScene.illo.shapes.new_box.height = step.length * 10;
-                checkScene.illo.shapes.new_box.depth = step.length * 10;
+            // Format values for display with 1 decimal place
+            const displayLength = Math.round(length * 10) / 10;
+            
+            if (checkScene && checkScene.illo) {
+              // Update box dimensions with 10 units = 1 cm scale
+              const newWidth = 160;          // 16cm × 10 units/cm
+              const newHeight = length * 10; // l cm × 10 units/cm
+              console.log("Setting box height/depth to:", newHeight);
+              
+              // Update main box
+              if (checkScene.illo.box) {
+                checkScene.illo.box.width = newWidth;
+                checkScene.illo.box.height = newHeight;
+                checkScene.illo.box.depth = newHeight; // depth = height (l = h)
                 
-                // Update the wireframe dimensions to match
-                if (checkScene.illo.shapes.new_box_wireframe) {
-                  checkScene.illo.shapes.new_box_wireframe.height = step.length * 10;
-                  checkScene.illo.shapes.new_box_wireframe.depth = step.length * 10;
-                }
-                
-                // Force redraw
-                checkScene.illo.updateRenderGraph();
+                // Change box color for each step for visual differentiation
+                const colors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6'];
+                checkScene.illo.box.color = colors[stepIndex];
+                checkScene.illo.box.updatePath();
               }
+              
+              // Update wireframe
+              if (checkScene.illo.wireframe) {
+                checkScene.illo.wireframe.width = newWidth;
+                checkScene.illo.wireframe.height = newHeight;
+                checkScene.illo.wireframe.depth = newHeight;
+                checkScene.illo.wireframe.updatePath();
+              }
+              
+              // Save current rotation for next update
+              checkLastRotation = {
+                x: checkScene.illo.rotate.x,
+                y: checkScene.illo.rotate.y,
+                z: checkScene.illo.rotate.z
+              };
+              
+              // Force redraw
+              checkScene.illo.updateRenderGraph();
             }
             
-            // Update check step title with content from this step
+            // Update check step title with minimal text
             const checkStepTitle = document.getElementById('checkStepTitle');
             
-            // Create formatted content with volume and length values
+            // Minimal content showing just the current volume and dimensions
             const titleContent = `
-              <div style="text-align: left; margin-bottom: 10px;">
-                <strong>Volume progression:</strong><br>
-                First box volume: ${step.volume} cm³<br>
-                New box width: 16 cm (fixed)<br>
-                New box length = height: ${step.length} cm<br>
-                Constraint: l = h<br>
-                Verification: 16 × ${step.length} × ${step.length} = ${Math.round(16 * step.length * step.length)} cm³
+              <div style="text-align: center; margin-bottom: 15px; font-size: 1.2rem;">
+                <h3 style="margin-bottom: 10px; color: #5b9bd5; font-size: 1.5rem;">Step ${stepIndex}: Volume = ${volume} cm³</h3>
+                
+                <div style="background-color: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 15px; text-align: center;">
+                  <p>Width: 16 cm (fixed)</p>
+                  <p>Length = Height: ${displayLength} cm</p>
+                </div>
               </div>
             `;
             
             // Set the formatted HTML content
             checkStepTitle.innerHTML = titleContent;
-            
-            if (zdogSceneData.scenes[key]) {
-              // Save rotation from current scene if it exists
-              if (checkScene && checkScene.illo) {
-                checkLastRotation = {
-                  x: checkScene.illo.rotate.x,
-                  y: checkScene.illo.rotate.y,
-                  z: checkScene.illo.rotate.z
-                };
-              }
-              
-              // If the current scene is the same as the new one, don't reinitialize
-              // This prevents "jerky" rotation when the scene content hasn't changed
-              if (key === checkSceneKey) {
-                console.log(`Check scene ${key} already displayed, keeping rotation`);
-                return;
-              }
-              
-              // Save current scene key
-              checkSceneKey = key;
-              
-              // Initialize with the saved rotation
-              initCheckZdogScene(key);
-              console.log(`Displayed Check Zdog scene: ${key}`);
-            } else {
-              console.warn(`Check scene not found: ${key}`);
-            }
           }
           
           // Reset App
