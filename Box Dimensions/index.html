@@ -1692,7 +1692,7 @@
               new Zdog.Text({
                 addTo: illo.shapes.original_cuboid_group,
                 font: boxFont,
-                value: `${originalWidth} cm`,
+                value: `w = ${originalWidth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -1706,7 +1706,7 @@
               new Zdog.Text({
                 addTo: illo.shapes.original_cuboid_group,
                 font: boxFont,
-                value: `${originalHeight} cm`,
+                value: `h = ${originalHeight} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -1721,7 +1721,7 @@
               new Zdog.Text({
                 addTo: illo.shapes.original_cuboid_group,
                 font: boxFont,
-                value: `${originalDepth} cm`,
+                value: `d = ${originalDepth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -1739,11 +1739,11 @@
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `${newWidth} cm`,
+                value: `w = ${newWidth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2980b9',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 0, y: 40, z: 0 },
@@ -1753,11 +1753,11 @@
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `${newHeight} cm`,
+                value: `h = ${newHeight} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2980b9',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 90, y: 0, z: 0 },
@@ -1768,11 +1768,11 @@
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `${newDepth} cm`,
+                value: `d = ${newDepth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2980b9',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 0, y: 0, z: 40 },
@@ -2639,7 +2639,7 @@
             new Zdog.Text({
               addTo: textGroup,
               font: boxFont,
-              value: `${width} cm`,
+              value: `w = ${width} cm`,
               fontSize: 14,
               textAlign: 'center',
               textBaseline: 'middle',
@@ -2653,7 +2653,7 @@
             new Zdog.Text({
               addTo: textGroup,
               font: boxFont,
-              value: `${displayLength} cm`,
+              value: `l = h = ${displayLength} cm`,
               fontSize: 14,
               textAlign: 'center',
               textBaseline: 'middle',
