@@ -1749,11 +1749,11 @@
                 translate: { x: 0, y: 40, z: 0 },
               });
               
-              // Height label (6 cm)
+              // Height label (? cm)
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `h = ${newHeight} cm`,
+                value: `h = ?`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -1764,11 +1764,11 @@
                 rotate: { y: Math.PI/2 }
               });
               
-              // Depth label (6 cm)
+              // Depth label (? cm)
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `l = ${newDepth} cm`,
+                value: `l = ?`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -2653,7 +2653,7 @@
             new Zdog.Text({
               addTo: textGroup,
               font: boxFont,
-              value: `l = h = ${displayLength} cm`,
+              value: stepIndex === 0 ? `l = h = ?` : `l = h = ${displayLength} cm`,
               fontSize: 14,
               textAlign: 'center',
               textBaseline: 'middle',
