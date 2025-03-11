@@ -1714,9 +1714,20 @@
                   translate: { z: -1 } // Slightly behind text
                 });
                 
-                // Add text
-                new Zdog.Text({
+                // Determine if we need to flip the text based on rotation
+                // This prevents text from appearing mirrored when viewed from certain angles
+                const needsFlip = shouldFlipText(rotate);
+                
+                // Create a group for the text that can be flipped independently
+                const textGroup = new Zdog.Group({
                   addTo: labelGroup,
+                  // Apply scale flip if needed
+                  scale: needsFlip ? { x: -1, y: 1, z: 1 } : { x: 1, y: 1, z: 1 }
+                });
+                
+                // Add text to the text group
+                new Zdog.Text({
+                  addTo: textGroup,
                   font: boxFont,
                   value: text,
                   fontSize: fontSize,
@@ -1728,6 +1739,17 @@
                 });
                 
                 return labelGroup;
+              }
+              
+              // Helper function to determine if text needs flipping
+              function shouldFlipText(rotation) {
+                // Check rotation angles to determine if text would appear mirrored
+                if (rotation.y !== undefined) {
+                  // If y rotation is in a range that would make text appear backwards
+                  const normalizedRotation = (rotation.y + 2 * Math.PI) % (2 * Math.PI);
+                  return normalizedRotation > Math.PI/2 && normalizedRotation < 3*Math.PI/2;
+                }
+                return false;
               }
               
               // Width label (8 cm)
@@ -2714,9 +2736,20 @@
                 translate: { z: -1 } // Slightly behind text
               });
               
-              // Add text
-              new Zdog.Text({
+              // Determine if we need to flip the text based on rotation
+              // This prevents text from appearing mirrored when viewed from certain angles
+              const needsFlip = shouldFlipText(rotate);
+              
+              // Create a group for the text that can be flipped independently
+              const textGroup = new Zdog.Group({
                 addTo: labelGroup,
+                // Apply scale flip if needed
+                scale: needsFlip ? { x: -1, y: 1, z: 1 } : { x: 1, y: 1, z: 1 }
+              });
+              
+              // Add text to the text group
+              new Zdog.Text({
+                addTo: textGroup,
                 font: boxFont,
                 value: text,
                 fontSize: fontSize,
@@ -2728,6 +2761,17 @@
               });
               
               return labelGroup;
+            }
+            
+            // Helper function to determine if text needs flipping
+            function shouldFlipText(rotation) {
+              // Check rotation angles to determine if text would appear mirrored
+              if (rotation.y !== undefined) {
+                // If y rotation is in a range that would make text appear backwards
+                const normalizedRotation = (rotation.y + 2 * Math.PI) % (2 * Math.PI);
+                return normalizedRotation > Math.PI/2 && normalizedRotation < 3*Math.PI/2;
+              }
+              return false;
             }
             
             // Width label
