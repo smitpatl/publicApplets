@@ -498,7 +498,12 @@
       <div id="checkVisualization" class="check-canvas-container">
         <!-- Check visualization canvas -->
         <canvas id="checkZdogCanvas" width="400" height="400"></canvas>
-        <!-- Controls hidden for check visualization -->
+        <!-- Controls for check visualization -->
+        <div class="zdog-controls" style="display: flex;">
+          <button id="rotateLeftBtn">⟲</button>
+          <button id="resetCheckViewBtn">Reset View</button>
+          <button id="rotateRightBtn">⟳</button>
+        </div>
       </div>
       <button id="resetButton" class="nav-btn">Reset</button>
     </div>
@@ -1628,7 +1633,7 @@
       let comprehendSubStep = 0;
       let connectSubStep = 0;
       let currentScene = null;
-      let isSpinning = true;
+      let isSpinning = false; // Start with no rotation for better readability
       let currentSceneKey = null; // Track current scene key to prevent unnecessary resets
       let lastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation
       
@@ -1688,96 +1693,97 @@
           if (sceneKey === 'comprehend_2') {
             // Left cuboid - original box
             if (illo.shapes && illo.shapes.original_cuboid_group) {
+              // Create a function to add a label with background
+              function addLabelWithBackground(parent, text, fontSize, translate, rotate = {}) {
+                // Create a group for this label set
+                const labelGroup = new Zdog.Group({
+                  addTo: parent,
+                  translate: translate,
+                  rotate: rotate
+                });
+                
+                // Add background panel
+                new Zdog.RoundedRect({
+                  addTo: labelGroup,
+                  width: text.length * fontSize * 0.6,
+                  height: fontSize * 1.8,
+                  stroke: 1,
+                  fill: true,
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  cornerRadius: 4,
+                  translate: { z: -1 } // Slightly behind text
+                });
+                
+                // Add text
+                new Zdog.Text({
+                  addTo: labelGroup,
+                  font: boxFont,
+                  value: text,
+                  fontSize: fontSize,
+                  textAlign: 'center',
+                  textBaseline: 'middle',
+                  color: '#000000', // Darker color for better readability
+                  fill: true,
+                  stroke: 0.5
+                });
+                
+                return labelGroup;
+              }
+              
               // Width label (8 cm)
-              new Zdog.Text({
-                addTo: illo.shapes.original_cuboid_group,
-                font: boxFont,
-                value: `w = ${originalWidth} cm`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 0, y: 40, z: 0 },
-              });
+              addLabelWithBackground(
+                illo.shapes.original_cuboid_group,
+                `w = ${originalWidth} cm`,
+                12,
+                { x: 0, y: 40, z: 0 }
+              );
               
               // Height label (6 cm)
-              new Zdog.Text({
-                addTo: illo.shapes.original_cuboid_group,
-                font: boxFont,
-                value: `h = ${originalHeight} cm`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 50, y: 0, z: 0 },
-                rotate: { y: Math.PI/2 }
-              });
+              addLabelWithBackground(
+                illo.shapes.original_cuboid_group,
+                `h = ${originalHeight} cm`,
+                12,
+                { x: 50, y: 0, z: 0 },
+                { y: Math.PI/2 }
+              );
               
               // Depth label (12 cm)
-              new Zdog.Text({
-                addTo: illo.shapes.original_cuboid_group,
-                font: boxFont,
-                value: `l = ${originalDepth} cm`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 0, y: 0, z: 70 },
-                rotate: { x: Math.PI/2 }
-              });
+              addLabelWithBackground(
+                illo.shapes.original_cuboid_group,
+                `l = ${originalDepth} cm`,
+                12,
+                { x: 0, y: 0, z: 70 },
+                { x: Math.PI/2 }
+              );
             }
             
             // Right cuboid - new box
             if (illo.shapes && illo.shapes.new_cuboid_group) {
               // Width label (16 cm)
-              new Zdog.Text({
-                addTo: illo.shapes.new_cuboid_group,
-                font: boxFont,
-                value: `w = ${newWidth} cm`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 0, y: 40, z: 0 },
-              });
+              addLabelWithBackground(
+                illo.shapes.new_cuboid_group,
+                `w = ${newWidth} cm`,
+                12,
+                { x: 0, y: 40, z: 0 }
+              );
               
               // Height label (? cm)
-              new Zdog.Text({
-                addTo: illo.shapes.new_cuboid_group,
-                font: boxFont,
-                value: `h = ?`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 90, y: 0, z: 0 },
-                rotate: { y: Math.PI/2 }
-              });
+              addLabelWithBackground(
+                illo.shapes.new_cuboid_group,
+                `h = ?`,
+                12,
+                { x: 90, y: 0, z: 0 },
+                { y: Math.PI/2 }
+              );
               
               // Depth label (? cm)
-              new Zdog.Text({
-                addTo: illo.shapes.new_cuboid_group,
-                font: boxFont,
-                value: `l = ?`,
-                fontSize: 12,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                color: '#000000', // Darker color for better readability
-                fill: true,
-                stroke: 0.5,
-                translate: { x: 0, y: 0, z: 40 },
-                rotate: { x: Math.PI/2 }
-              });
+              addLabelWithBackground(
+                illo.shapes.new_cuboid_group,
+                `l = ?`,
+                12,
+                { x: 0, y: 0, z: 40 },
+                { x: Math.PI/2 }
+              );
             }
           }
           
@@ -2511,8 +2517,8 @@
         // Note: We've removed the control buttons for a cleaner interface
         console.log("Initializing check slider visualization");
         
-        // Set up auto-rotation for check visualization
-        checkIsSpinning = true;
+        // Initialize with no rotation for better label readability
+        checkIsSpinning = false;
         
         // Create the initial box visualization
         createVolumeBoxVisualization();
@@ -2520,6 +2526,58 @@
         // Set up check slider
         checkSlider.oninput = updateVolumeBox;
         updateVolumeBox(); // Initialize with first volume
+        
+        // Set up rotation controls
+        const resetCheckViewBtn = document.getElementById('resetCheckViewBtn');
+        const rotateLeftBtn = document.getElementById('rotateLeftBtn');
+        const rotateRightBtn = document.getElementById('rotateRightBtn');
+        
+        resetCheckViewBtn.addEventListener('click', () => {
+          if (checkScene && checkScene.illo) {
+            // Reset to isometric view
+            checkScene.illo.rotate.x = -Math.PI/6;
+            checkScene.illo.rotate.y = Math.PI/4;
+            checkScene.illo.rotate.z = 0;
+            checkScene.illo.updateRenderGraph();
+            
+            // Update last rotation
+            checkLastRotation = {
+              x: checkScene.illo.rotate.x,
+              y: checkScene.illo.rotate.y,
+              z: checkScene.illo.rotate.z
+            };
+          }
+        });
+        
+        rotateLeftBtn.addEventListener('click', () => {
+          if (checkScene && checkScene.illo) {
+            // Rotate left around Y axis (in 30-degree increments)
+            checkScene.illo.rotate.y -= Math.PI/6;
+            checkScene.illo.updateRenderGraph();
+            
+            // Update last rotation
+            checkLastRotation = {
+              x: checkScene.illo.rotate.x,
+              y: checkScene.illo.rotate.y,
+              z: checkScene.illo.rotate.z
+            };
+          }
+        });
+        
+        rotateRightBtn.addEventListener('click', () => {
+          if (checkScene && checkScene.illo) {
+            // Rotate right around Y axis (in 30-degree increments)
+            checkScene.illo.rotate.y += Math.PI/6;
+            checkScene.illo.updateRenderGraph();
+            
+            // Update last rotation
+            checkLastRotation = {
+              x: checkScene.illo.rotate.x,
+              y: checkScene.illo.rotate.y,
+              z: checkScene.illo.rotate.z
+            };
+          }
+        });
         
         console.log("Check slider visualization initialized successfully");
       }
@@ -2635,48 +2693,67 @@
             });
             checkScene.illo.textGroup = textGroup;
             
+            // Helper function to add a label with background
+            function addLabelWithBackground(parent, text, fontSize, translate, rotate = {}) {
+              // Create a group for this label set
+              const labelGroup = new Zdog.Group({
+                addTo: parent,
+                translate: translate,
+                rotate: rotate
+              });
+              
+              // Add background panel
+              new Zdog.RoundedRect({
+                addTo: labelGroup,
+                width: text.length * fontSize * 0.6,
+                height: fontSize * 1.8,
+                stroke: 1,
+                fill: true,
+                color: 'rgba(255, 255, 255, 0.8)',
+                cornerRadius: 4,
+                translate: { z: -1 } // Slightly behind text
+              });
+              
+              // Add text
+              new Zdog.Text({
+                addTo: labelGroup,
+                font: boxFont,
+                value: text,
+                fontSize: fontSize,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#000000', // Darker color for better readability
+                fill: true,
+                stroke: 0.5
+              });
+              
+              return labelGroup;
+            }
+            
             // Width label
-            new Zdog.Text({
-              addTo: textGroup,
-              font: boxFont,
-              value: `w = ${width} cm`,
-              fontSize: 14,
-              textAlign: 'center',
-              textBaseline: 'middle',
-              color: '#000000', // Darker color for better readability
-              fill: true,
-              stroke: 0.5,
-              translate: { x: 0, y: 40, z: 0 },
-            });
+            addLabelWithBackground(
+              textGroup,
+              `w = ${width} cm`,
+              14,
+              { x: 0, y: 40, z: 0 }
+            );
             
             // Length/height label (l = h)
-            new Zdog.Text({
-              addTo: textGroup,
-              font: boxFont,
-              value: stepIndex === 0 ? `l = h = ?` : `l = h = ${displayLength} cm`,
-              fontSize: 14,
-              textAlign: 'center',
-              textBaseline: 'middle',
-              color: '#000000', // Darker color for better readability
-              fill: true,
-              stroke: 0.5,
-              translate: { x: 90, y: 0, z: 0 },
-              rotate: { y: Math.PI/2 }
-            });
+            addLabelWithBackground(
+              textGroup,
+              stepIndex === 0 ? `l = h = ?` : `l = h = ${displayLength} cm`,
+              14,
+              { x: 90, y: 0, z: 0 },
+              { y: Math.PI/2 }
+            );
             
             // Volume label
-            new Zdog.Text({
-              addTo: textGroup,
-              font: boxFont,
-              value: `Volume: ${volume} cm³`,
-              fontSize: 14,
-              textAlign: 'center',
-              textBaseline: 'middle',
-              color: '#000000', // Darker color for better readability
-              fill: true,
-              stroke: 0.5,
-              translate: { x: 0, y: -70, z: 0 },
-            });
+            addLabelWithBackground(
+              textGroup,
+              `Volume: ${volume} cm³`,
+              14,
+              { x: 0, y: -70, z: 0 }
+            );
           });
           
           // Update main box
