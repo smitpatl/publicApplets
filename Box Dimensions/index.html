@@ -536,13 +536,13 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#fad7d7",
-                "frontFace": "#fad7d7",
-                "rearFace": "#fad7d7",
-                "leftFace": "#c7abab",
-                "rightFace": "#c7abab",
-                "topFace": "#fbdfdf",
-                "bottomFace": "#fbdfdf"
+                "color": "rgba(250, 215, 215, 0.7)",
+                "frontFace": "rgba(250, 215, 215, 0.7)",
+                "rearFace": "rgba(250, 215, 215, 0.7)",
+                "leftFace": "rgba(199, 171, 171, 0.7)",
+                "rightFace": "rgba(199, 171, 171, 0.7)",
+                "topFace": "rgba(251, 223, 223, 0.7)",
+                "bottomFace": "rgba(251, 223, 223, 0.7)"
               }
             },
             {
@@ -605,13 +605,13 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#fad7d7",
-                "frontFace": "#fad7d7",
-                "rearFace": "#fad7d7",
-                "leftFace": "#c7abab",
-                "rightFace": "#c7abab",
-                "topFace": "#fbdfdf",
-                "bottomFace": "#fbdfdf"
+                "color": "rgba(250, 215, 215, 0.7)",
+                "frontFace": "rgba(250, 215, 215, 0.7)",
+                "rearFace": "rgba(250, 215, 215, 0.7)",
+                "leftFace": "rgba(199, 171, 171, 0.7)",
+                "rightFace": "rgba(199, 171, 171, 0.7)",
+                "topFace": "rgba(251, 223, 223, 0.7)",
+                "bottomFace": "rgba(251, 223, 223, 0.7)"
               }
             },
             {
@@ -648,13 +648,13 @@
                 "depth": 60,
                 "stroke": 0,
                 "fill": true,
-                "color": "#3498db",
-                "frontFace": "#3498db",
-                "rearFace": "#3498db",
-                "leftFace": "#2980b9",
-                "rightFace": "#2980b9",
-                "topFace": "#5dade2",
-                "bottomFace": "#5dade2"
+                "color": "rgba(52, 152, 219, 0.7)",
+                "frontFace": "rgba(52, 152, 219, 0.7)",
+                "rearFace": "rgba(52, 152, 219, 0.7)",
+                "leftFace": "rgba(41, 128, 185, 0.7)",
+                "rightFace": "rgba(41, 128, 185, 0.7)",
+                "topFace": "rgba(93, 173, 226, 0.7)",
+                "bottomFace": "rgba(93, 173, 226, 0.7)"
               }
             },
             {
@@ -1721,7 +1721,7 @@
               new Zdog.Text({
                 addTo: illo.shapes.original_cuboid_group,
                 font: boxFont,
-                value: `d = ${originalDepth} cm`,
+                value: `l = ${originalDepth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -1768,7 +1768,7 @@
               new Zdog.Text({
                 addTo: illo.shapes.new_cuboid_group,
                 font: boxFont,
-                value: `d = ${newDepth} cm`,
+                value: `l = ${newDepth} cm`,
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
@@ -2545,7 +2545,7 @@
           updateSort: true
         });
         
-        // Create the box with colors matching the SVG
+        // Create the box with translucent colors so labels are always visible
         const box = new Zdog.Box({
           addTo: boxGroup,
           width: 160, // 16 cm × 10 units/cm
@@ -2553,13 +2553,13 @@
           depth: 50,   // Will be adjusted based on volume
           stroke: 0,
           fill: true,
-          color: '#fad7d7',     // Front/main face color
-          frontFace: '#fad7d7', // Light pink
-          rearFace: '#fad7d7',  // Light pink
-          leftFace: '#c7abab',  // Darker pinkish
-          rightFace: '#c7abab', // Darker pinkish
-          topFace: '#fbdfdf',   // Very light pink
-          bottomFace: '#fbdfdf' // Very light pink
+          color: 'rgba(250, 215, 215, 0.7)',     // Translucent front/main face color
+          frontFace: 'rgba(250, 215, 215, 0.7)', // Translucent light pink
+          rearFace: 'rgba(250, 215, 215, 0.7)',  // Translucent light pink
+          leftFace: 'rgba(199, 171, 171, 0.7)',  // Translucent darker pinkish
+          rightFace: 'rgba(199, 171, 171, 0.7)', // Translucent darker pinkish
+          topFace: 'rgba(251, 223, 223, 0.7)',   // Translucent very light pink
+          bottomFace: 'rgba(251, 223, 223, 0.7)' // Translucent very light pink
         });
         
         // Add wireframe with steel blue stroke color
