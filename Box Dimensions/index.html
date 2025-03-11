@@ -1696,7 +1696,7 @@
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2c3e50',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 0, y: 40, z: 0 },
@@ -1710,7 +1710,7 @@
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2c3e50',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 50, y: 0, z: 0 },
@@ -1725,7 +1725,7 @@
                 fontSize: 12,
                 textAlign: 'center',
                 textBaseline: 'middle',
-                color: '#2c3e50',
+                color: '#000000', // Darker color for better readability
                 fill: true,
                 stroke: 0.5,
                 translate: { x: 0, y: 0, z: 70 },
@@ -2621,6 +2621,63 @@
           const newWidth = 160;          // 16cm × 10 units/cm
           const newHeight = length * 10; // l cm × 10 units/cm
           console.log("Setting box height/depth to:", newHeight);
+          
+          // Add text labels to check visualization
+          Zdog.waitForFonts().then(() => {
+            // Clear any previous text labels
+            if (checkScene.illo.textGroup) {
+              checkScene.illo.textGroup.remove();
+            }
+            
+            // Create a group for text labels
+            const textGroup = new Zdog.Group({
+              addTo: checkScene.illo,
+            });
+            checkScene.illo.textGroup = textGroup;
+            
+            // Width label
+            new Zdog.Text({
+              addTo: textGroup,
+              font: boxFont,
+              value: `${width} cm`,
+              fontSize: 14,
+              textAlign: 'center',
+              textBaseline: 'middle',
+              color: '#000000', // Darker color for better readability
+              fill: true,
+              stroke: 0.5,
+              translate: { x: 0, y: 40, z: 0 },
+            });
+            
+            // Length/height label (l = h)
+            new Zdog.Text({
+              addTo: textGroup,
+              font: boxFont,
+              value: `${displayLength} cm`,
+              fontSize: 14,
+              textAlign: 'center',
+              textBaseline: 'middle',
+              color: '#000000', // Darker color for better readability
+              fill: true,
+              stroke: 0.5,
+              translate: { x: 90, y: 0, z: 0 },
+              rotate: { y: Math.PI/2 }
+            });
+            
+            // Volume label
+            new Zdog.Text({
+              addTo: textGroup,
+              font: boxFont,
+              value: `Volume: ${volume} cm³`,
+              fontSize: 14,
+              textAlign: 'center',
+              textBaseline: 'middle',
+              color: '#000000', // Darker color for better readability
+              fill: true,
+              stroke: 0.5,
+              translate: { x: 0, y: -70, z: 0 },
+            });
+          });
           
           // Update main box
           if (checkScene.illo.box) {
