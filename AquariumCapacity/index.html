@@ -566,7 +566,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "aquarium_outline",
+          "id": "aquarium_group",
           "options": {
             "translate": {
               "x": 0,
@@ -577,14 +577,14 @@
           "children": [
             {
               "type": "Box",
-              "id": "aquarium_solid",
+              "id": "aquarium_box",
               "options": {
                 "width": 60,
                 "height": 45,
                 "depth": 30,
                 "stroke": 0,
                 "fill": true,
-                "color": "#5b9bd5"
+                "color": "#f47983"
               }
             },
             {
@@ -594,7 +594,7 @@
                 "width": 60,
                 "height": 45,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -607,36 +607,56 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "water_level_80_percent",
+          "id": "volume_calculation_group",
           "options": {
             "translate": {
               "x": 0,
-              "y": -4.5,
+              "y": 0,
               "z": 0
             }
           },
           "children": [
             {
               "type": "Box",
-              "id": "water_filled",
+              "id": "total_volume_box",
               "options": {
                 "width": 60,
-                "height": 36,
+                "height": 45,
                 "depth": 30,
                 "stroke": 0,
                 "fill": true,
-                "color": "#6aa84f"
+                "color": "#5b9bd5"
               }
             },
             {
               "type": "Box",
-              "id": "water_wireframe",
+              "id": "total_volume_wireframe",
               "options": {
                 "width": 60,
-                "height": 36,
+                "height": 45,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
+                "color": "#000000"
+              }
+            },
+            {
+              "type": "Shape",
+              "id": "volume_label",
+              "options": {
+                "path": [
+                  {
+                    "x": -30,
+                    "y": 22.5,
+                    "z": 15
+                  },
+                  {
+                    "x": 30,
+                    "y": 22.5,
+                    "z": 15
+                  }
+                ],
+                "stroke": 1.5,
                 "color": "#000000"
               }
             }
@@ -648,7 +668,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "conversion_visual",
+          "id": "filled_volume_group",
           "options": {
             "translate": {
               "x": 0,
@@ -658,23 +678,25 @@
           },
           "children": [
             {
-              "type": "Cylinder",
-              "id": "cylinder_conversion",
+              "type": "Box",
+              "id": "filled_volume_box",
               "options": {
-                "diameter": 10,
-                "length": 10,
+                "width": 60,
+                "height": 36,
+                "depth": 30,
                 "stroke": 0,
                 "fill": true,
-                "color": "#f47983"
+                "color": "#6aa84f"
               }
             },
             {
-              "type": "Cylinder",
-              "id": "cylinder_wireframe",
+              "type": "Box",
+              "id": "filled_volume_wireframe",
               "options": {
-                "diameter": 10,
-                "length": 10,
-                "stroke": 2.5,
+                "width": 60,
+                "height": 36,
+                "depth": 30,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -687,90 +709,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "connect_arrows",
-          "options": {
-            "translate": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            }
-          },
-          "children": [
-            {
-              "type": "Shape",
-              "id": "arrow_1",
-              "options": {
-                "path": [
-                  {
-                    "x": -30,
-                    "y": 0
-                  },
-                  {
-                    "x": 0,
-                    "y": 0
-                  },
-                  {
-                    "x": -5,
-                    "y": -5
-                  },
-                  {
-                    "move": {
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "x": -5,
-                    "y": 5
-                  }
-                ],
-                "stroke": 2.5,
-                "color": "#000000",
-                "fill": false
-              }
-            },
-            {
-              "type": "Shape",
-              "id": "arrow_2",
-              "options": {
-                "path": [
-                  {
-                    "x": 30,
-                    "y": 0
-                  },
-                  {
-                    "x": 0,
-                    "y": 0
-                  },
-                  {
-                    "x": 5,
-                    "y": -5
-                  },
-                  {
-                    "move": {
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "x": 5,
-                    "y": 5
-                  }
-                ],
-                "stroke": 2.5,
-                "color": "#000000",
-                "fill": false
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "compute_1": {
-      "shapes": [
-        {
-          "type": "Group",
-          "id": "volume_calculation",
+          "id": "conversion_group",
           "options": {
             "translate": {
               "x": 0,
@@ -781,7 +720,64 @@
           "children": [
             {
               "type": "Box",
-              "id": "full_volume",
+              "id": "liter_conversion_box",
+              "options": {
+                "width": 60,
+                "height": 36,
+                "depth": 30,
+                "stroke": 0,
+                "fill": true,
+                "color": "#5b9bd5"
+              }
+            },
+            {
+              "type": "Box",
+              "id": "liter_conversion_wireframe",
+              "options": {
+                "width": 60,
+                "height": 36,
+                "depth": 30,
+                "stroke": 1.5,
+                "fill": false,
+                "color": "#000000"
+              }
+            },
+            {
+              "type": "Cylinder",
+              "id": "liter_marker",
+              "options": {
+                "diameter": 10,
+                "length": 5,
+                "stroke": 0,
+                "fill": true,
+                "color": "#f47983",
+                "translate": {
+                  "x": 0,
+                  "y": 18,
+                  "z": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "compute_1": {
+      "shapes": [
+        {
+          "type": "Group",
+          "id": "calculation_steps_group",
+          "options": {
+            "translate": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          "children": [
+            {
+              "type": "Box",
+              "id": "step1_box",
               "options": {
                 "width": 60,
                 "height": 45,
@@ -793,12 +789,12 @@
             },
             {
               "type": "Box",
-              "id": "full_volume_wireframe",
+              "id": "step1_wireframe",
               "options": {
                 "width": 60,
                 "height": 45,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -811,18 +807,18 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "filled_volume_calculation",
+          "id": "step2_group",
           "options": {
             "translate": {
               "x": 0,
-              "y": -4.5,
+              "y": 0,
               "z": 0
             }
           },
           "children": [
             {
               "type": "Box",
-              "id": "filled_volume",
+              "id": "step2_box",
               "options": {
                 "width": 60,
                 "height": 36,
@@ -834,12 +830,12 @@
             },
             {
               "type": "Box",
-              "id": "filled_volume_wireframe",
+              "id": "step2_wireframe",
               "options": {
                 "width": 60,
                 "height": 36,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -852,7 +848,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "conversion_to_liters",
+          "id": "step3_group",
           "options": {
             "translate": {
               "x": 0,
@@ -862,23 +858,25 @@
           },
           "children": [
             {
-              "type": "Cylinder",
-              "id": "liters_cylinder",
+              "type": "Box",
+              "id": "step3_box",
               "options": {
-                "diameter": 10,
-                "length": 10,
+                "width": 60,
+                "height": 36,
+                "depth": 30,
                 "stroke": 0,
                 "fill": true,
                 "color": "#6aa84f"
               }
             },
             {
-              "type": "Cylinder",
-              "id": "liters_cylinder_wireframe",
+              "type": "Box",
+              "id": "step3_wireframe",
               "options": {
-                "diameter": 10,
-                "length": 10,
-                "stroke": 2.5,
+                "width": 60,
+                "height": 36,
+                "depth": 30,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -891,7 +889,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "final_volume_liters",
+          "id": "final_liters_group",
           "options": {
             "translate": {
               "x": 0,
@@ -902,10 +900,10 @@
           "children": [
             {
               "type": "Cylinder",
-              "id": "final_liters",
+              "id": "final_liters_cylinder",
               "options": {
                 "diameter": 10,
-                "length": 10,
+                "length": 64.8,
                 "stroke": 0,
                 "fill": true,
                 "color": "#f47983"
@@ -916,8 +914,8 @@
               "id": "final_liters_wireframe",
               "options": {
                 "diameter": 10,
-                "length": 10,
-                "stroke": 2.5,
+                "length": 64.8,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -930,7 +928,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "verification_step",
+          "id": "check_conversion_group",
           "options": {
             "translate": {
               "x": 0,
@@ -941,10 +939,10 @@
           "children": [
             {
               "type": "Box",
-              "id": "verification_box",
+              "id": "check_conversion_box",
               "options": {
                 "width": 60,
-                "height": 45,
+                "height": 36,
                 "depth": 30,
                 "stroke": 0,
                 "fill": true,
@@ -953,12 +951,12 @@
             },
             {
               "type": "Box",
-              "id": "verification_wireframe",
+              "id": "check_conversion_wireframe",
               "options": {
                 "width": 60,
-                "height": 45,
+                "height": 36,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -971,7 +969,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "final_check_cylinder",
+          "id": "final_check_group",
           "options": {
             "translate": {
               "x": 0,
@@ -982,10 +980,10 @@
           "children": [
             {
               "type": "Cylinder",
-              "id": "final_check",
+              "id": "final_check_cylinder",
               "options": {
                 "diameter": 10,
-                "length": 10,
+                "length": 64.8,
                 "stroke": 0,
                 "fill": true,
                 "color": "#f47983"
@@ -996,8 +994,8 @@
               "id": "final_check_wireframe",
               "options": {
                 "diameter": 10,
-                "length": 10,
-                "stroke": 2.5,
+                "length": 64.8,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -1010,7 +1008,7 @@
       "shapes": [
         {
           "type": "Group",
-          "id": "final_verification",
+          "id": "summary_group",
           "options": {
             "translate": {
               "x": 0,
@@ -1021,10 +1019,10 @@
           "children": [
             {
               "type": "Box",
-              "id": "final_verification_box",
+              "id": "summary_box",
               "options": {
                 "width": 60,
-                "height": 45,
+                "height": 36,
                 "depth": 30,
                 "stroke": 0,
                 "fill": true,
@@ -1033,12 +1031,12 @@
             },
             {
               "type": "Box",
-              "id": "final_verification_wireframe",
+              "id": "summary_wireframe",
               "options": {
                 "width": 60,
-                "height": 45,
+                "height": 36,
                 "depth": 30,
-                "stroke": 2.5,
+                "stroke": 1.5,
                 "fill": false,
                 "color": "#000000"
               }
@@ -1110,21 +1108,21 @@
       let connectQuestions = [];
       
       try {
-        givenItems = JSON.parse('["Calculate the total volume of the aquarium in cubic centimeters (V = l \\u00d7 w \\u00d7 h)", "nd 80% of the total volume", "nvert the volume from cubic centimeters to liters"]');
+        givenItems = JSON.parse('["Calculate the total volume of the aquarium in cubic centimeters (V = l \\u00d7 w \\u00d7 h)", "Find 80% of the total volume", "Convert the volume from cubic centimeters to liters"]');
       } catch (e) {
         console.error('Error parsing given items:', e);
         givenItems = [];
       }
       
       try {
-        toFindItems = JSON.parse('["Understand how to convert between different units of volume", "ply volume formulas to solve real-world problems", "sualize how liquid volume transforms between different containers"]');
+        toFindItems = JSON.parse('["Understand how to convert between different units of volume", "Apply volume formulas to solve real-world problems", "Visualize how liquid volume transforms between different containers"]');
       } catch (e) {
         console.error('Error parsing to-find items:', e);
         toFindItems = [];
       }
       
       try {
-        computeSteps = JSON.parse('["Step 1: Calculate the volume of the original shape", "Step 2: Calculate the total volume of the aquarium in cubic centimeters (V = l \\u00d7 w \\u00d7 h)", "Step 3: nd 80% of the total volume", "Step 4: nvert the volume from cubic centimeters to liters", "", "", "", "", ""]');
+        computeSteps = JSON.parse('["Step 1: Calculate the total volume of the aquarium in cubic centimeters (V = l \\u00d7 w \\u00d7 h)", "V = 60 cm \\u00d7 30 cm \\u00d7 45 cm = 81,000 cm\\u00b3", "Step 2: Find 80% of the total volume", "Volume of water = 81,000 cm\\u00b3 \\u00d7 0.8 = 64,800 cm\\u00b3", "Step 3: Convert the volume from cubic centimeters to liters", "64,800 cm\\u00b3 \\u00f7 1000 = 64.8 liters", "", "", ""]');
       } catch (e) {
         console.error('Error parsing compute steps:', e);
         computeSteps = [];
@@ -1876,7 +1874,7 @@
           // Use a safer approach to parse the JSON
           let checkSteps = [];
           try {
-            checkSteps = JSON.parse('["Check if the volume of the original shape equals the volume of the new shape", "Verify your calculations by substituting the values", "Consider if your answer makes sense in the context of the problem", "Calculate the surface area of both shapes to observe how it changes", "Try with different numbers to see if the pattern holds", ""]');
+            checkSteps = JSON.parse('["Verify your calculations by substituting the values", "Check: V = 60 \\u00d7 30 \\u00d7 45 = 81,000 cm\\u00b3", "Check: 81,000 \\u00d7 0.8 = 64,800 cm\\u00b3", "Check: 64,800 \\u00f7 1000 = 64.8 liters", "Consider if your answer makes sense in the context of the problem", ""]');
           } catch (parseError) {
             console.warn("Error directly parsing check steps JSON, using empty array:", parseError);
             checkSteps = [];
