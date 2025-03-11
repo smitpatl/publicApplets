@@ -433,8 +433,8 @@
           <!-- Zdog Canvas will be inserted here -->
           <canvas id="zdogCanvas" width="400" height="400"></canvas>
           
-          <!-- Controls for Zdog -->
-          <div class="zdog-controls">
+          <!-- Controls for Zdog (hidden to match check scene) -->
+          <div class="zdog-controls" style="display: none;">
             <button id="resetViewBtn">Reset View</button>
             <button id="autoRotateBtn">Auto Rotate</button>
           </div>
@@ -482,7 +482,7 @@
   <!-- Check Overlay -->
   <div id="checkOverlay" class="overlay hidden">
     <div class="overlay-content">
-      <h2>slide to check</h2>
+      <h2>Slide to View</h2>
       <div class="slider-container">
         <input type="range" id="checkSlider" class="slider" min="0" max="3" value="0" step="1">
         <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 5px;">
@@ -496,13 +496,9 @@
       <div id="checkVisualization" class="check-canvas-container">
         <!-- Check visualization canvas -->
         <canvas id="checkZdogCanvas" width="400" height="400"></canvas>
-        <!-- Controls for check Zdog -->
-        <div class="zdog-controls">
-          <button id="checkResetViewBtn">Reset View</button>
-          <button id="checkAutoRotateBtn">Auto Rotate</button>
-        </div>
+        <!-- Controls hidden for check visualization -->
       </div>
-      <button id="resetButton" class="nav-btn">Go Back</button>
+      <button id="resetButton" class="nav-btn">Reset</button>
     </div>
   </div>
   
@@ -538,7 +534,13 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#f47983"
+                "color": "#fad7d7",
+                "frontFace": "#fad7d7",
+                "rearFace": "#fad7d7",
+                "leftFace": "#c7abab",
+                "rightFace": "#c7abab",
+                "topFace": "#fbdfdf",
+                "bottomFace": "#fbdfdf"
               }
             },
             {
@@ -601,7 +603,13 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#f47983"
+                "color": "#fad7d7",
+                "frontFace": "#fad7d7",
+                "rearFace": "#fad7d7",
+                "leftFace": "#c7abab",
+                "rightFace": "#c7abab",
+                "topFace": "#fbdfdf",
+                "bottomFace": "#fbdfdf"
               }
             },
             {
@@ -638,7 +646,13 @@
                 "depth": 60,
                 "stroke": 0,
                 "fill": true,
-                "color": "#3498db"
+                "color": "#3498db",
+                "frontFace": "#3498db",
+                "rearFace": "#3498db",
+                "leftFace": "#2980b9",
+                "rightFace": "#2980b9",
+                "topFace": "#5dade2",
+                "bottomFace": "#5dade2"
               }
             },
             {
@@ -662,41 +676,41 @@
             "path": [
               {
                 "move": {
-                  "x": -50,
+                  "x": -60,
                   "y": 0,
                   "z": 0
                 }
               },
               {
                 "line": {
-                  "x": 50,
+                  "x": -10,
                   "y": 0,
                   "z": 0
                 }
               },
               {
                 "line": {
-                  "x": 45,
-                  "y": -5,
+                  "x": -12.5,
+                  "y": -2.5,
                   "z": 0
                 }
               },
               {
                 "move": {
-                  "x": 50,
+                  "x": -10,
                   "y": 0,
                   "z": 0
                 }
               },
               {
                 "line": {
-                  "x": 45,
-                  "y": 5,
+                  "x": -12.5,
+                  "y": 2.5,
                   "z": 0
                 }
               }
             ],
-            "stroke": 3,
+            "stroke": 2,
             "color": "#3498db"
           }
         }
@@ -776,7 +790,13 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#f47983"
+                "color": "#fad7d7",
+                "frontFace": "#fad7d7",
+                "rearFace": "#fad7d7",
+                "leftFace": "#c7abab",
+                "rightFace": "#c7abab",
+                "topFace": "#fbdfdf",
+                "bottomFace": "#fbdfdf"
               }
             },
             {
@@ -895,15 +915,21 @@
                 {
                   "type": "Box",
                   "id": "original_box",
-                  "options": {
-                    "width": 80,
-                    "height": 60,
-                    "depth": 120,
-                    "stroke": 0,
-                    "fill": true,
-                    "color": "#f47983"
-                  }
-                },
+              "options": {
+                "width": 80,
+                "height": 60,
+                "depth": 120,
+                "stroke": 0,
+                "fill": true,
+                "color": "#fad7d7",
+                "frontFace": "#fad7d7",
+                "rearFace": "#fad7d7",
+                "leftFace": "#c7abab",
+                "rightFace": "#c7abab",
+                "topFace": "#fbdfdf",
+                "bottomFace": "#fbdfdf"
+              }
+            },
                 {
                   "type": "Box",
                   "id": "original_box_wireframe",
@@ -1213,19 +1239,19 @@
                 "depth": 120,
                 "stroke": 0,
                 "fill": true,
-                "color": "#f47983"
+                "color": "#ffd700"
               }
             },
             {
               "type": "Box",
               "id": "original_box_wireframe",
               "options": {
-                "width": 80,
-                "height": 60,
-                "depth": 120,
-                "stroke": 2.5,
-                "fill": false,
-                "color": "#000000"
+                "width": 100,
+                "height": 50,
+                "depth": 150,
+                "stroke": 0,
+                "fill": true,
+                "color": "#ffd700"
               }
             },
             {
@@ -1557,1126 +1583,961 @@
       ]
     }
   }
-    }</script>
+    }
+  </script>
       
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          // Check if canvas is supported
-          if (!document.createElement('canvas').getContext) {
-            document.getElementById('zdogCanvas').classList.add('hidden');
-            document.getElementById('zdogFallback').classList.remove('hidden');
-          }
-          
-          // DOM Elements
-          const nextButton = document.getElementById('nextButton');
-          const previousButton = document.getElementById('previousButton');
-          const resetButton = document.getElementById('resetButton');
-          const equationContainer = document.getElementById('equationContainer');
-          const visualizationArea = document.getElementById('visualizationArea');
-          const connectOverlay = document.getElementById('connectOverlay');
-          const checkOverlay = document.getElementById('checkOverlay');
-          const connectNextButton = document.getElementById('connectNextButton');
-          const mcqOptions = document.getElementById('mcqOptions');
-          const feedback = document.getElementById('feedback');
-          const connectQuestion = document.getElementById('connectQuestion');
-          const checkSlider = document.getElementById('checkSlider');
-          const resetViewBtn = document.getElementById('resetViewBtn');
-          const autoRotateBtn = document.getElementById('autoRotateBtn');
-          const zdogCanvas = document.getElementById('zdogCanvas');
-          
-          // Parse Zdog scene data
-          let zdogSceneData;
-          try {
-            zdogSceneData = JSON.parse(document.getElementById('zdogSceneData').textContent);
-            console.log('Loaded Zdog scene data:', zdogSceneData);
-          } catch (e) {
-            console.error('Error parsing Zdog scene data:', e);
-            zdogSceneData = { global: {}, scenes: {} };
-          }
-          
-          // State Variables
-          let currentStep = 'comprehend';
-          let comprehendSubStep = 0;
-          let connectSubStep = 0;
-          let currentScene = null;
-          let isSpinning = true;
-          let currentSceneKey = null; // Track current scene key to prevent unnecessary resets
-          let lastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation
-          
-          // Data
-          const givenItems = JSON.parse('["Original box dimensions = 8 cm \\u00d7 6 cm \\u00d7 12 cm", "New box width = 16 cm", ""]');
-          const toFindItems = JSON.parse('["Length and height of the new box (l = h)", ""]');
-          const computeSteps = JSON.parse('["Step 1: Calculate the volume of the original box", "Volume = length \\u00d7 width \\u00d7 height = 8 cm \\u00d7 6 cm \\u00d7 12 cm = 576 cm\\u00b3", "Step 2: Set up equation for the new box", "Volume = width \\u00d7 length \\u00d7 height = 16 cm \\u00d7 l \\u00d7 h = 576 cm\\u00b3", "Step 3: Use the constraint l = h", "Volume = 16 cm \\u00d7 l \\u00d7 l = 16l\\u00b2 cm\\u00b3 = 576 cm\\u00b3", "Step 4: Solve for l", "16l\\u00b2 = 576\\nl\\u00b2 = 576 \\u00f7 16 = 36\\nl = \\u221a36 = 6 cm", "Step 5: Since l = h, we have h = 6 cm"]');
-          const connectQuestions = JSON.parse('[{"question": "To find the length and height of a box using its volume and width, which formula should we use?", "options": [{"text": "Length = \\u221a(Volume \\u00f7 Width) when Length = Height", "correct": "true"}, {"text": "Length = Volume \\u00d7 Width \\u00d7 Height", "correct": "false"}, {"text": "Length = Volume + Width + Height", "correct": "false"}, {"text": "Length = Volume - (Width \\u00d7 Height)", "correct": "false"}]}, {"question": "When a box is melted and recasted into another shape, what physical property remains the same?", "options": [{"text": "The volume", "correct": "true"}, {"text": "The surface area", "correct": "false"}, {"text": "The dimensions", "correct": "false"}, {"text": "The shape", "correct": "false"}]}]');
-          
-          // Zdog initialization and rendering
-          function initZdogScene(sceneKey) {
-            // Clear any existing animation
-            if (currentScene && currentScene.animation) {
-              cancelAnimationFrame(currentScene.animation);
-            }
-            
-            // Create new Illustration with isometric projection settings
-            const illo = new Zdog.Illustration({
-              element: zdogCanvas,
-              dragRotate: true,
-              // Use saved rotation if available, otherwise use default isometric rotation
-              rotate: { ...lastRotation }, // Apply the last known rotation
-              // Stop spinning when dragged
-              onDragStart: function() {
-                isSpinning = false;
-              }
-            });
-            
-            // Load the scene configuration
-            const sceneConfig = zdogSceneData.scenes[sceneKey] || { shapes: [] };
-            
-            // Create shapes based on configuration
-            createShapesFromConfig(illo, sceneConfig);
-            
-            // Animation loop
-            function animate() {
-              if (isSpinning) {
-                illo.rotate.y += 0.01;
-              }
-              illo.updateRenderGraph();
-              currentScene.animation = requestAnimationFrame(animate);
-            }
-            
-            // Store the scene
-            currentScene = {
-              illo: illo,
-              animation: requestAnimationFrame(animate)
-            };
-            
-            return currentScene;
-          }
-          
-          // Function to create Zdog shapes from config
-          function createShapesFromConfig(illo, config) {
-            // Process each shape in the configuration
-            config.shapes.forEach(shapeConfig => {
-              createZdogShape(illo, shapeConfig);
-            });
-            
-            // Add a reference grid for better orientation if not already in config
-            if (!illo.shapes || !illo.shapes.grid) {
-              // Create grid with light gray lines
-              const gridSize = 200;
-              const gridDivisions = 10;
-              const step = gridSize / gridDivisions;
-              
-              // Create grid group
-              const grid = new Zdog.Group({
-                addTo: illo,
-                translate: { y: 70 }, // Place grid slightly below the center
-                updateSort: true
-              });
-              
-              // Add grid lines along X axis
-              for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
-                new Zdog.Shape({
-                  addTo: grid,
-                  path: [
-                    { x: -gridSize/2, y: 0, z: i * step },
-                    { x: gridSize/2, y: 0, z: i * step }
-                  ],
-                  stroke: 1,
-                  color: '#DDDDDD'
-                });
-              }
-              
-              // Add grid lines along Z axis
-              for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
-                new Zdog.Shape({
-                  addTo: grid,
-                  path: [
-                    { x: i * step, y: 0, z: -gridSize/2 },
-                    { x: i * step, y: 0, z: gridSize/2 }
-                  ],
-                  stroke: 1,
-                  color: '#DDDDDD'
-                });
-              }
-              
-              // Add X, Y, Z axes for reference
-              // X axis (red)
-              new Zdog.Shape({
-                addTo: grid,
-                path: [
-                  { x: 0, y: 0, z: 0 },
-                  { x: gridSize/2 + 20, y: 0, z: 0 }
-                ],
-                stroke: 2,
-                color: '#FF5555'
-              });
-              
-              // Y axis (green)
-              new Zdog.Shape({
-                addTo: grid,
-                path: [
-                  { x: 0, y: 0, z: 0 },
-                  { x: 0, y: -gridSize/2 - 20, z: 0 }
-                ],
-                stroke: 2,
-                color: '#55FF55'
-              });
-              
-              // Z axis (blue)
-              new Zdog.Shape({
-                addTo: grid,
-                path: [
-                  { x: 0, y: 0, z: 0 },
-                  { x: 0, y: 0, z: gridSize/2 + 20 }
-                ],
-                stroke: 2,
-                color: '#5555FF'
-              });
-              
-              // Store reference to grid
-              illo.shapes = illo.shapes || {};
-              illo.shapes.grid = grid;
-            }
-          }
-          
-          // Helper function to create individual shapes
-          function createZdogShape(illo, shapeConfig) {
-            // Skip unsupported shape types
-            if (shapeConfig.type === 'Text') {
-              console.log(`Skipping unsupported shape type: Text (ID: ${shapeConfig.id || 'unnamed'})`);
-              
-              // If this text has children, create them under the parent instead
-              if (shapeConfig.children && shapeConfig.children.length) {
-                const parent = shapeConfig.parent ? findParentShape(illo, shapeConfig.parent) : illo;
-                shapeConfig.children.forEach(childConfig => {
-                  // Set the same parent for all children
-                  const childWithParent = {...childConfig, parent: shapeConfig.parent};
-                  createZdogShape(illo, childWithParent);
-                });
-              }
-              
-              return null;
-            }
-            
-            const ShapeClass = Zdog[shapeConfig.type];
-            if (!ShapeClass) {
-              console.warn(`Shape type not found: ${shapeConfig.type}. Supported types: ${Object.keys(Zdog).filter(key => typeof Zdog[key] === 'function').join(', ')}`);
-              return null;
-            }
-            
-            // Find parent shape if specified
-            let parent = illo;
-            if (shapeConfig.parent) {
-              parent = findParentShape(illo, shapeConfig.parent);
-            }
-            
-            try {
-              // Create the shape with configuration
-              const shapeOptions = { ...shapeConfig.options, addTo: parent };
-              const shape = new ShapeClass(shapeOptions);
-              
-              // Add any child shapes
-              if (shapeConfig.children && shapeConfig.children.length) {
-                shapeConfig.children.forEach(childConfig => {
-                  // Set parent to the current shape
-                  createZdogShape(shape, childConfig);
-                });
-              }
-              
-              // Store shape with ID if specified
-              if (shapeConfig.id) {
-                illo.shapes = illo.shapes || {};
-                illo.shapes[shapeConfig.id] = shape;
-              }
-              
-              return shape;
-            } catch (e) {
-              console.error(`Error creating ${shapeConfig.type} shape:`, e);
-              return null;
-            }
-          }
-          
-          // Helper function to find a parent shape by ID
-          function findParentShape(illo, parentId) {
-            if (!illo.shapes || !illo.shapes[parentId]) {
-              console.warn(`Parent shape not found: ${parentId}`);
-              return illo;
-            }
-            return illo.shapes[parentId];
-          }
-          
-          // Function to display a consistent scene throughout
-          function displayZdogScene(section, index) {
-            // For comprehend and compute sections, we'll use the same scene with both boxes
-            if (section === 'comprehend' || section === 'compute') {
-              const key = 'comprehend_2'; // Using this scene as the base since it has both boxes
-              
-              // If we already have this scene, don't reinitialize
-              if (key === currentSceneKey && currentScene && currentScene.illo) {
-                console.log(`Scene ${key} already displayed, keeping rotation`);
-                return;
-              }
-              
-              // Save current rotation if we have a scene
-              if (currentScene && currentScene.illo) {
-                lastRotation = {
-                  x: currentScene.illo.rotate.x,
-                  y: currentScene.illo.rotate.y,
-                  z: currentScene.illo.rotate.z
-                };
-              }
-              
-              // Save current scene key
-              currentSceneKey = key;
-              
-              // Initialize the scene
-              initZdogScene(key);
-              console.log(`Displayed consistent scene for ${section}`);
-            } 
-            // For check section, use the dedicated visualization
-            else if (section === 'check') {
-              const key = `${section}_1`;
-              
-              // Save current rotation if we have a scene
-              if (currentScene && currentScene.illo) {
-                lastRotation = {
-                  x: currentScene.illo.rotate.x,
-                  y: currentScene.illo.rotate.y,
-                  z: currentScene.illo.rotate.z
-                };
-              }
-              
-              // Save current scene key
-              currentSceneKey = key;
-              
-              // Initialize the scene
-              if (zdogSceneData.scenes[key]) {
-                initZdogScene(key);
-                console.log(`Displayed check scene: ${key}`);
-              } else {
-                console.warn(`Check scene not found: ${key}`);
-              }
-            }
-            // For connect section, use the connect scene
-            else if (section === 'connect') {
-              const key = `${section}_1`;
-              
-              // Save current rotation if we have a scene
-              if (currentScene && currentScene.illo) {
-                lastRotation = {
-                  x: currentScene.illo.rotate.x,
-                  y: currentScene.illo.rotate.y,
-                  z: currentScene.illo.rotate.z
-                };
-              }
-              
-              // Save current scene key
-              currentSceneKey = key;
-              
-              // Initialize the scene
-              if (zdogSceneData.scenes[key]) {
-                initZdogScene(key);
-                console.log(`Displayed connect scene: ${key}`);
-              } else {
-                console.warn(`Connect scene not found: ${key}`);
-              }
-            }
-          }
-          
-          // Step Navigation
-          function showStep(step) {
-            // Update UI
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
-            currentStep = step;
-            
-            // Reset container
-            equationContainer.innerHTML = '';
-            
-            // Hide overlays by default
-            connectOverlay.classList.add('hidden');
-            checkOverlay.classList.add('hidden');
-            
-            // Show/hide previous button
-            previousButton.classList.toggle('hidden', step === 'comprehend');
-            
-            // Initialize appropriate Zdog scene based on step
-            if (step === 'comprehend') {
-              // Hide visualization initially in comprehend step
-              visualizationArea.classList.add('hidden');
-              displayZdogScene('comprehend', 1);
-              showComprehendContent();
-              nextButton.onclick = advanceComprehend;
-            } 
-            else if (step === 'connect') {
-              displayZdogScene('connect', 1);
-              connectOverlay.classList.remove('hidden');
-              connectSubStep = 0;
-              showConnectQuestion();
-              nextButton.classList.add('hidden');
-            } 
-            else if (step === 'compute') {
-              displayZdogScene('compute', 1);
-              // Reset next button text from previous steps
-              nextButton.textContent = 'Next';
-              showComputeSteps();
-              // Note: showComputeSteps will set up the proper nextButton.onclick handler
-            } 
-            else if (step === 'check') {
-              displayZdogScene('check', 1);
-              checkOverlay.classList.remove('hidden');
-              nextButton.classList.add('hidden');
-              initCheckSlider();
-            }
-          }
-          
-          // Comprehend Step
-          function showComprehendContent() {
-            // Create given and to-find sections
-            const givenSection = document.createElement('div');
-            givenSection.className = 'given-section';
-            givenSection.id = 'givenSection';
-            const givenHeading = document.createElement('h3');
-            givenHeading.textContent = 'Given:';
-            givenSection.appendChild(givenHeading);
-            
-            const toFindSection = document.createElement('div');
-            toFindSection.className = 'tofind-section';
-            toFindSection.id = 'toFindSection';
-            const toFindHeading = document.createElement('h3');
-            toFindHeading.textContent = 'To Find:';
-            toFindSection.appendChild(toFindHeading);
-            
-            // Add sections to equation container
-            equationContainer.appendChild(givenSection);
-            equationContainer.appendChild(toFindSection);
-            
-            // Hide sections initially
-            givenSection.style.display = 'none';
-            toFindSection.style.display = 'none';
-          }
-          // Function to animate text from highlighted element to given/tofind section
-          function animateText(element, displayText, targetSection, isGiven) {
-            // Highlight the clicked element
-            if (element) {
-              element.style.backgroundColor = isGiven ? "rgba(255, 182, 193, 0.3)" : "rgba(100, 149, 237, 0.3)";
-            } else {
-              console.error("Element not found for animation");
-              return;
-            }
-            
-            // Create a clone element for animation
-            const clone = document.createElement("span");
-            clone.textContent = displayText;
-            clone.classList.add("clone");
-            clone.style.color = isGiven ? "#f47983" : "#5b9bd5";
-            clone.style.position = "absolute";
-            clone.style.zIndex = "1000";
-            clone.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
-            
-            // Position the clone at the clicked element's position
-            const rect = element.getBoundingClientRect();
-            clone.style.left = `${rect.left}px`;
-            clone.style.top = `${rect.top}px`;
-            clone.style.opacity = "1";
-            document.body.appendChild(clone);
-            
-            // Make sure the target section exists
-            if (!targetSection) {
-              console.error("Target section not found");
-              return;
-            }
-            
-            // Create a paragraph element to add to the target section
-            const paragraph = document.createElement("p");
-            paragraph.innerHTML = displayText;
-            
-            // Animate the clone to the target section
-            setTimeout(() => {
-              const appendRect = targetSection.getBoundingClientRect();
-              const targetX = appendRect.left + 10;
-              const targetY = appendRect.top + 30;
-              
-              clone.style.transform = `translate(${targetX - rect.left}px, ${targetY - rect.top}px)`;
-              clone.style.opacity = "0.9";
-              
-              // Add the paragraph to the target section in sync with the animation
-              targetSection.appendChild(paragraph);
-            }, 50);
-            
-            // Remove the clone after animation completes
-            setTimeout(() => {
-              document.body.removeChild(clone);
-              element.style.backgroundColor = "";
-            }, 800);
-          }
-          
-          function advanceComprehend() {
-            const givenSection = document.getElementById('givenSection');
-            const toFindSection = document.getElementById('toFindSection');
-            
-            if (comprehendSubStep === 0) {
-              // Show given section
-              givenSection.style.display = 'block';
-              
-              // Keep visualization area hidden during Given step
-              visualizationArea.classList.add('hidden');
-              
-              // Get all highlighted given elements
-              const givenElements = document.querySelectorAll('.highlight-given');
-              
-              // If no elements found, just add the text directly to the section
-              if (givenElements.length === 0) {
-                givenItems.forEach(item => {
-                  const p = document.createElement('p');
-                  p.textContent = item;
-                  givenSection.appendChild(p);
-                });
-              } else {
-                // Animate given information for each highlighted item
-                givenElements.forEach((element, index) => {
-                  if (index < givenItems.length) {
-                    setTimeout(() => {
-                      animateText(element, givenItems[index], givenSection, true);
-                    }, index * 500);
-                  }
-                });
-              }
-              
-              comprehendSubStep = 1;
-            } 
-            else if (comprehendSubStep === 1) {
-              // Show to find section
-              toFindSection.style.display = 'block';
-              
-              // Show visualization area when the To Find section is displayed
-              visualizationArea.classList.remove('hidden');
-              
-              // Get all highlighted to-find elements
-              const toFindElements = document.querySelectorAll('.highlight-tofind');
-              
-              // If no elements found, just add the text directly to the section
-              if (toFindElements.length === 0) {
-                toFindItems.forEach(item => {
-                  const p = document.createElement('p');
-                  p.textContent = item;
-                  toFindSection.appendChild(p);
-                });
-              } else {
-                // Animate to-find information for each highlighted item
-                toFindElements.forEach((element, index) => {
-                  if (index < toFindItems.length) {
-                    setTimeout(() => {
-                      animateText(element, toFindItems[index], toFindSection, false);
-                    }, index * 500);
-                  }
-                });
-              }
-              
-              // Update visualization
-              displayZdogScene('comprehend', 2);
-              
-              comprehendSubStep = 2;
-              
-              // Change next button to advance to connect step
-              setTimeout(() => {
-                nextButton.onclick = () => showStep('connect');
-              }, Math.max(500, toFindElements.length * 500));
-            }
-          }
-          
-          // Connect Step
-          function showConnectQuestion() {
-            const connectStepArea = document.getElementById('connectStepArea');
-            // Only proceed if we have questions
-            if (!connectQuestions || connectQuestions.length === 0) {
-              console.error("No connect questions defined");
-              return;
-            }
-            
-            // Ensure connectQuestions has at least 2 items
-            if (connectQuestions.length === 1) {
-              // Duplicate the first question if only one exists
-              connectQuestions.push({...connectQuestions[0]});
-              console.log("Added duplicate question since only one was provided");
-            }
-            
-            // Render the left side steps
-            connectStepArea.innerHTML = '';
-            
-            // Build the equation boxes for left side one by one
-            for (let i = 0; i < connectQuestions.length; i++) {
-              const q = connectQuestions[i];
-              const box = document.createElement('div');
-              box.classList.add('equation-box');
-              
-              // Get appropriate left content based on CSV structure
-              // The CSV processor creates questions with 'question' field, not 'left'/'right'
-              let leftContent = '';
-              if (q.left) {
-                leftContent = q.left;
-              } else if (q.question) {
-                // If we have options, make a nice format for left side
-                const correctOption = q.options?.find(opt => opt.correct === "true" || opt.correct === true);
-                leftContent = correctOption ? `${q.question.split('?')[0]}?` : q.question;
-              } else {
-                leftContent = `Question ${i+1}`;
-              }
-              
-              // Three states:
-              // 1. Already solved (show postSolve)
-              // 2. Current question (active)
-              // 3. Future question (inactive)
-              if (i < connectSubStep) {
-                // Solved question
-                box.innerHTML = `<span>${q.postSolve || leftContent}</span>`;
-              } else if (i === connectSubStep) {
-                // Current question
-                box.classList.add('active');
-                box.innerHTML = `<span>${leftContent}</span>`;
-              } else {
-                // Future question
-                box.classList.add('inactive');
-                box.innerHTML = `<span>${leftContent}</span>`;
-              }
-              
-              connectStepArea.appendChild(box);
-            }
-            
-            // Get the current question
-            const question = connectQuestions[connectSubStep];
-            
-            // Set the right side question
-            const connectQuestionBox = document.getElementById('connectQuestionBox');
-            
-            // Determine question content
-            let questionContent = '';
-            if (question.right) {
-              questionContent = question.right;
-            } else if (question.question) {
-              questionContent = question.question;
-            } else {
-              questionContent = `What is the answer to question ${connectSubStep + 1}?`;
-            }
-            
-            connectQuestionBox.innerHTML = `<span>${questionContent}</span>`;
-            
-            // Clear previous options
-            mcqOptions.innerHTML = '';
-            
-            // Shuffle options to randomize answer order
-            const shuffledOptions = [...question.options];
-            for (let i = shuffledOptions.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
-            }
-            
-            // Add options in shuffled order
-            shuffledOptions.forEach(option => {
-              const button = document.createElement('button');
-              button.className = 'mcq-btn';
-              button.textContent = option.text;
-              button.setAttribute('data-correct', option.correct);
-              
-              button.onclick = function() {
-                const isCorrect = this.getAttribute('data-correct') === 'true';
-                handleMCQSelection(this, isCorrect);
-              };
-              
-              mcqOptions.appendChild(button);
-            });
-            
-            // Reset feedback and next button
-            feedback.textContent = '';
-            connectNextButton.disabled = true;
-            
-            // Reset overlay color
-            const overlayContent = connectOverlay.querySelector('.overlay-content');
-            overlayContent.classList.remove('correct', 'incorrect');
-          }
-          
-          function handleMCQSelection(button, isCorrect) {
-            const allButtons = mcqOptions.querySelectorAll('.mcq-btn');
-            const overlayContent = connectOverlay.querySelector('.overlay-content');
-            
-            // Disable all buttons initially
-            allButtons.forEach(btn => {
-              btn.classList.add('disabled');
-            });
-            
-            if (isCorrect) {
-              button.classList.add('correct');
-              button.classList.remove('incorrect');
-              feedback.textContent = 'Correct!';
-              feedback.style.color = '#6aa84f';
-              connectNextButton.disabled = false;
-              overlayContent.classList.add('correct');
-              overlayContent.classList.remove('incorrect');
-              
-              // Keep other buttons disabled
-              allButtons.forEach(btn => {
-                if (btn !== button) {
-                  btn.classList.add('disabled');
-                }
-              });
-            } else {
-              button.classList.add('incorrect');
-              button.classList.remove('correct');
-              feedback.textContent = 'Try again!';
-              feedback.style.color = '#cc0000';
-              overlayContent.classList.add('incorrect');
-              overlayContent.classList.remove('correct');
-              
-              // Re-enable all buttons after a delay
-              setTimeout(() => {
-                allButtons.forEach(btn => {
-                  btn.classList.remove('disabled', 'incorrect');
-                });
-                feedback.textContent = '';
-              }, 1500);
-            }
-          }
-          
-          function handleConnectNext() {
-            if (connectSubStep < connectQuestions.length - 1) {
-              // Show next question
-              connectSubStep++;
-              showConnectQuestion();
-            } else {
-              // End of connect section, show summary
-              connectOverlay.classList.add('hidden');
-              document.getElementById('summaryOverlay').classList.remove('hidden');
-              showSummary();
-            }
-          }
-          
-          function showSummary() {
-            const summaryContent = document.getElementById('summaryContent');
-            summaryContent.innerHTML = '';
-            
-            // Add all solved questions to the summary
-            connectQuestions.forEach((q) => {
-              const box = document.createElement('div');
-              box.className = 'equation-box';
-              
-              // Get appropriate left content using same logic as showConnectQuestion
-              let leftContent = '';
-              if (q.left) {
-                leftContent = q.left;
-              } else if (q.question) {
-                // If we have options, make a nice format for left side
-                const correctOption = q.options?.find(opt => opt.correct === "true" || opt.correct === true);
-                leftContent = correctOption ? `${q.question.split('?')[0]}?` : q.question;
-              } else {
-                leftContent = `Question`;
-              }
-              
-              // Get appropriate right/question content
-              let questionContent = '';
-              if (q.right) {
-                questionContent = q.right;
-              } else if (q.question) {
-                questionContent = q.question;
-              } else {
-                questionContent = '';
-              }
-              
-              // Avoid showing duplicate text if left and right would be the same
-              const displayQuestion = leftContent === questionContent ? '' : questionContent;
-              
-              box.innerHTML = `<div style="margin-bottom: 10px;"><strong>${leftContent}</strong> ${displayQuestion}</div>
-                              <div>${q.postSolve || 'Answer: ' + q.options.find(o => o.correct).text}</div>`;
-              summaryContent.appendChild(box);
-            });
-            
-            // Setup summary next button
-            document.getElementById('summaryNextButton').onclick = () => {
-              document.getElementById('summaryOverlay').classList.add('hidden');
-              nextButton.classList.remove('hidden');
-              showStep('compute');
-            };
-          }
-          
-          // Compute Step
-          let computeSubStep = 0;
-          
-          function showComputeSteps() {
-            // Reset compute step and UI
-            computeSubStep = 0;
-            equationContainer.innerHTML = '';
-            
-            // Create container for compute steps with styling matching tofind-section
-            const stepsContainer = document.createElement('div');
-            stepsContainer.id = 'computeStepsContainer';
-            stepsContainer.className = 'compute-steps-container';
-            stepsContainer.style.backgroundColor = '#f5f5f5';
-            stepsContainer.style.borderRadius = '8px';
-            stepsContainer.style.padding = '15px';
-            stepsContainer.style.borderLeft = '4px solid #5b9bd5';
-            equationContainer.appendChild(stepsContainer);
-            
-            // Setup next button for compute step animation
-            nextButton.onclick = advanceComputeStep;
-            
-            // Initialize with first compute step if available
-            if (computeSteps.length > 0) {
-              advanceComputeStep();
-            } else {
-              // If no compute steps defined, show placeholder
-              const placeholder = document.createElement('div');
-              placeholder.className = 'equation-step';
-              placeholder.textContent = 'No computation steps available.';
-              stepsContainer.appendChild(placeholder);
-              
-              // Change next button to advance to check step
-              nextButton.onclick = () => showStep('check');
-            }
-          }
-          
-          function advanceComputeStep() {
-            const stepsContainer = document.getElementById('computeStepsContainer');
-            
-            // If we've gone through all steps, move to the check step
-            if (computeSubStep >= computeSteps.length) {
-              // Immediately go to check step instead of waiting for another click
-              showStep('check');
-              return;
-            }
-            
-            // Add the next compute step
-            const stepElement = document.createElement('div');
-            stepElement.className = 'equation-step';
-            stepElement.textContent = computeSteps[computeSubStep];
-            
-            // Apply animation effect
-            stepElement.style.opacity = '0';
-            stepElement.style.transform = 'translateY(20px)';
-            stepElement.style.transition = 'opacity 0.5s, transform 0.5s';
-            
-            stepsContainer.appendChild(stepElement);
-            
-            // Update visualization
-            const sceneIndex = Math.min(computeSubStep + 1, 4); // Limit to 4 scenes
-            displayZdogScene('compute', sceneIndex);
-            
-            // Trigger animation after adding to DOM
-            setTimeout(() => {
-              stepElement.style.opacity = '1';
-              stepElement.style.transform = 'translateY(0)';
-            }, 50);
-            
-            // Increment for next step
-            computeSubStep++;
-            
-            // If this was the last step, change button text to indicate moving to check
-            if (computeSubStep >= computeSteps.length) {
-              nextButton.textContent = 'Next: Check';
-            }
-          }
-          
-          // Check Step - Direct volume visualization
-          let checkScene = null;
-          let checkIsSpinning = true;
-          let checkLastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation for check scenes
-          
-          function initCheckSlider() {
-            // Get check-specific controls
-            const checkZdogCanvas = document.getElementById('checkZdogCanvas');
-            const checkResetViewBtn = document.getElementById('checkResetViewBtn');
-            const checkAutoRotateBtn = document.getElementById('checkAutoRotateBtn');
-            
-            // Set up event listeners for the check canvas controls
-            checkResetViewBtn.addEventListener('click', () => {
-              if (checkScene && checkScene.illo) {
-                // Reset to isometric view
-                checkScene.illo.rotate.x = -Math.PI/6;
-                checkScene.illo.rotate.y = Math.PI/4;
-                checkScene.illo.rotate.z = 0;
-                checkScene.illo.updateRenderGraph();
-              }
-            });
-            
-            checkAutoRotateBtn.addEventListener('click', () => {
-              checkIsSpinning = !checkIsSpinning;
-              checkAutoRotateBtn.textContent = checkIsSpinning ? 'Stop Rotation' : 'Auto Rotate';
-            });
-            
-            // Create the initial box visualization
-            createVolumeBoxVisualization();
-            
-            // Set up check slider
-            checkSlider.oninput = updateVolumeBox;
-            updateVolumeBox(); // Initialize with first volume
-          }
-          
-          function createVolumeBoxVisualization() {
-            // Clear any existing animation
-            if (checkScene && checkScene.animation) {
-              cancelAnimationFrame(checkScene.animation);
-            }
-            
-            const checkZdogCanvas = document.getElementById('checkZdogCanvas');
-            
-            // Create new Illustration with isometric projection settings
-            const illo = new Zdog.Illustration({
-              element: checkZdogCanvas,
-              dragRotate: true,
-              rotate: { ...checkLastRotation },
-              onDragStart: function() {
-                checkIsSpinning = false;
-              }
-            });
-            
-            // Create a box group
-            const boxGroup = new Zdog.Group({
-              addTo: illo,
-              updateSort: true
-            });
-            
-            // Create the box
-            const box = new Zdog.Box({
-              addTo: boxGroup,
-              width: 160, // 16 cm × 10 units/cm
-              height: 50,  // Will be adjusted based on volume
-              depth: 50,   // Will be adjusted based on volume
-              stroke: 0,
-              fill: true,
-              color: '#3498db',
-              frontFace: '#3498db',
-              rearFace: '#2980b9',
-              leftFace: '#2980b9',
-              rightFace: '#3498db',
-              topFace: '#4ca3db',
-              bottomFace: '#246a9c'
-            });
-            
-            // Add wireframe
-            const wireframe = new Zdog.Box({
-              addTo: boxGroup,
-              width: 160,
-              height: 50,
-              depth: 50,
-              stroke: 2.5,
-              fill: false,
-              color: '#000000'
-            });
-            
-            // No reference lines or markers for cleaner visualization
-            const referenceMarkers = [];
-            
-            // Reference grid with light gray lines
-            const gridSize = 200;
-            const gridDivisions = 10;
-            const step = gridSize / gridDivisions;
-            
-            // Create grid group
-            const grid = new Zdog.Group({
-              addTo: illo,
-              translate: { y: 70 }, // Place grid slightly below the center
-              updateSort: true
-            });
-            
-            // Add grid lines along X axis
-            for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
-              new Zdog.Shape({
-                addTo: grid,
-                path: [
-                  { x: -gridSize/2, y: 0, z: i * step },
-                  { x: gridSize/2, y: 0, z: i * step }
-                ],
-                stroke: 1,
-                color: '#DDDDDD'
-              });
-            }
-            
-            // Add grid lines along Z axis
-            for (let i = -gridDivisions/2; i <= gridDivisions/2; i++) {
-              new Zdog.Shape({
-                addTo: grid,
-                path: [
-                  { x: i * step, y: 0, z: -gridSize/2 },
-                  { x: i * step, y: 0, z: gridSize/2 }
-                ],
-                stroke: 1,
-                color: '#DDDDDD'
-              });
-            }
-            
-            // Add X, Y, Z axes for reference
-            // X axis (red)
-            new Zdog.Shape({
-              addTo: grid,
-              path: [
-                { x: 0, y: 0, z: 0 },
-                { x: gridSize/2 + 20, y: 0, z: 0 }
-              ],
-              stroke: 2,
-              color: '#FF5555'
-            });
-            
-            // Y axis (green)
-            new Zdog.Shape({
-              addTo: grid,
-              path: [
-                { x: 0, y: 0, z: 0 },
-                { x: 0, y: -gridSize/2 - 20, z: 0 }
-              ],
-              stroke: 2,
-              color: '#55FF55'
-            });
-            
-            // Z axis (blue)
-            new Zdog.Shape({
-              addTo: grid,
-              path: [
-                { x: 0, y: 0, z: 0 },
-                { x: 0, y: 0, z: gridSize/2 + 20 }
-              ],
-              stroke: 2,
-              color: '#5555FF'
-            });
-            
-            // Store references for animation
-            illo.box = box;
-            illo.wireframe = wireframe;
-            illo.referenceMarkers = referenceMarkers;
-            
-            // Animation loop
-            function animate() {
-              if (checkIsSpinning) {
-                illo.rotate.y += 0.01;
-              }
-              illo.updateRenderGraph();
-              checkScene.animation = requestAnimationFrame(animate);
-            }
-            
-            // Store the scene
-            checkScene = {
-              illo: illo,
-              animation: requestAnimationFrame(animate)
-            };
-            
-            return checkScene;
-          }
-          
-          function updateVolumeBox() {
-            // Get direct step from slider (now 0-3)
-            const stepIndex = parseInt(checkSlider.value);
-            console.log("Current step index:", stepIndex);
-            
-            // Predefined volume steps
-            const volumeSteps = [400, 600, 800, 1000];
-            const volume = volumeSteps[stepIndex];
-            console.log("Current volume:", volume);
-            
-            // Calculate length based on the formula V = w × l × h = 16 × l × l (since l = h)
-            // So l = sqrt(V / 16)
-            const width = 16; // Fixed width
-            const length = Math.sqrt(volume / width);
-            console.log("Calculated length/height:", length);
-            
-            // Format values for display with 1 decimal place
-            const displayLength = Math.round(length * 10) / 10;
-            
-            if (checkScene && checkScene.illo) {
-              // Update box dimensions with 10 units = 1 cm scale
-              const newWidth = 160;          // 16cm × 10 units/cm
-              const newHeight = length * 10; // l cm × 10 units/cm
-              console.log("Setting box height/depth to:", newHeight);
-              
-              // Update main box
-              if (checkScene.illo.box) {
-                checkScene.illo.box.width = newWidth;
-                checkScene.illo.box.height = newHeight;
-                checkScene.illo.box.depth = newHeight; // depth = height (l = h)
-                
-                // Change box color for each step for visual differentiation
-                const colors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6'];
-                checkScene.illo.box.color = colors[stepIndex];
-                checkScene.illo.box.updatePath();
-              }
-              
-              // Update wireframe
-              if (checkScene.illo.wireframe) {
-                checkScene.illo.wireframe.width = newWidth;
-                checkScene.illo.wireframe.height = newHeight;
-                checkScene.illo.wireframe.depth = newHeight;
-                checkScene.illo.wireframe.updatePath();
-              }
-              
-              // Save current rotation for next update
-              checkLastRotation = {
-                x: checkScene.illo.rotate.x,
-                y: checkScene.illo.rotate.y,
-                z: checkScene.illo.rotate.z
-              };
-              
-              // Force redraw
-              checkScene.illo.updateRenderGraph();
-            }
-            
-            // Update check step title with minimal text
-            const checkStepTitle = document.getElementById('checkStepTitle');
-            
-            // Minimal content showing just the current volume and dimensions
-            const titleContent = `
-              <div style="text-align: center; margin-bottom: 15px; font-size: 1.2rem;">
-                <h3 style="margin-bottom: 10px; color: #5b9bd5; font-size: 1.5rem;">Step ${stepIndex}: Volume = ${volume} cm³</h3>
-                
-                <div style="background-color: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 15px; text-align: center;">
-                  <p>Width: 16 cm (fixed)</p>
-                  <p>Length = Height: ${displayLength} cm</p>
-                </div>
-              </div>
-            `;
-            
-            // Set the formatted HTML content
-            checkStepTitle.innerHTML = titleContent;
-          }
-          
-          // Reset App
-          function resetApp() {
-            currentStep = 'comprehend';
-            comprehendSubStep = 0;
-            connectSubStep = 0;
-            checkOverlay.classList.add('hidden');
-            nextButton.classList.remove('hidden');
-            showStep('comprehend');
-          }
-          
-          // Handle Zdog controls
-          resetViewBtn.addEventListener('click', () => {
-            if (currentScene && currentScene.illo) {
-              // Reset to isometric view
-              currentScene.illo.rotate.x = -Math.PI/6;
-              currentScene.illo.rotate.y = Math.PI/4;
-              currentScene.illo.rotate.z = 0;
-              currentScene.illo.updateRenderGraph();
-            }
-          });
-          
-          autoRotateBtn.addEventListener('click', () => {
-            isSpinning = !isSpinning;
-            autoRotateBtn.textContent = isSpinning ? 'Stop Rotation' : 'Auto Rotate';
-          });
-          
-          // Event Listeners
-          previousButton.addEventListener('click', () => {
-            if (currentStep === 'connect') {
-              showStep('comprehend');
-            } else if (currentStep === 'compute') {
-              // From compute, go back to connect with summary view
-              document.getElementById('summaryOverlay').classList.remove('hidden');
-              showSummary();
-            } else if (currentStep === 'check') {
-              showStep('compute');
-            }
-          });
-          
-          connectNextButton.addEventListener('click', handleConnectNext);
-          resetButton.addEventListener('click', resetApp);
-          
-          // Initialize the app
-          showStep('comprehend');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if canvas is supported
+      if (!document.createElement('canvas').getContext) {
+        document.getElementById('zdogCanvas').classList.add('hidden');
+        document.getElementById('zdogFallback').classList.remove('hidden');
+      }
+      
+      // DOM Elements
+      const nextButton = document.getElementById('nextButton');
+      const previousButton = document.getElementById('previousButton');
+      const resetButton = document.getElementById('resetButton');
+      const equationContainer = document.getElementById('equationContainer');
+      const visualizationArea = document.getElementById('visualizationArea');
+      const connectOverlay = document.getElementById('connectOverlay');
+      const checkOverlay = document.getElementById('checkOverlay');
+      const connectNextButton = document.getElementById('connectNextButton');
+      const mcqOptions = document.getElementById('mcqOptions');
+      const feedback = document.getElementById('feedback');
+      const connectQuestion = document.getElementById('connectQuestion');
+      const checkSlider = document.getElementById('checkSlider');
+      const resetViewBtn = document.getElementById('resetViewBtn');
+      const autoRotateBtn = document.getElementById('autoRotateBtn');
+      const zdogCanvas = document.getElementById('zdogCanvas');
+      
+      // Parse Zdog scene data
+      let zdogSceneData;
+      try {
+        zdogSceneData = JSON.parse(document.getElementById('zdogSceneData').textContent);
+        console.log('Loaded Zdog scene data:', zdogSceneData);
+      } catch (e) {
+        console.error('Error parsing Zdog scene data:', e);
+        zdogSceneData = { global: {}, scenes: {} };
+      }
+      
+      // State Variables
+      let currentStep = 'comprehend';
+      let comprehendSubStep = 0;
+      let connectSubStep = 0;
+      let currentScene = null;
+      let isSpinning = true;
+      let currentSceneKey = null; // Track current scene key to prevent unnecessary resets
+      let lastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation
+      
+      // Data
+      const givenItems = JSON.parse('["Original box dimensions = 8 cm \\u00d7 6 cm \\u00d7 12 cm", "New box width = 16 cm", ""]');
+      const toFindItems = JSON.parse('["Length and height of the new box (l = h)", ""]');
+      const computeSteps = JSON.parse('["Step 1: Calculate the volume of the original box", "Volume = length \\u00d7 width \\u00d7 height = 8 cm \\u00d7 6 cm \\u00d7 12 cm = 576 cm\\u00b3", "Step 2: Set up equation for the new box", "Volume = width \\u00d7 length \\u00d7 height = 16 cm \\u00d7 l \\u00d7 h = 576 cm\\u00b3", "Step 3: Use the constraint l = h", "Volume = 16 cm \\u00d7 l \\u00d7 l = 16l\\u00b2 cm\\u00b3 = 576 cm\\u00b3", "Step 4: Solve for l", "16l\\u00b2 = 576\\nl\\u00b2 = 576 \\u00f7 16 = 36\\nl = \\u221a36 = 6 cm", "Step 5: Since l = h, we have h = 6 cm"]');
+      const connectQuestions = JSON.parse('[{"question": "To find the length and height of a box using its volume and width, which formula should we use?", "options": [{"text": "Length = \\u221a(Volume \\u00f7 Width) when Length = Height", "correct": "true"}, {"text": "Length = Volume \\u00d7 Width \\u00d7 Height", "correct": "false"}, {"text": "Length = Volume + Width + Height", "correct": "false"}, {"text": "Length = Volume - (Width \\u00d7 Height)", "correct": "false"}]}, {"question": "When a box is melted and recasted into another shape, what physical property remains the same?", "options": [{"text": "The volume", "correct": "true"}, {"text": "The surface area", "correct": "false"}, {"text": "The dimensions", "correct": "false"}, {"text": "The shape", "correct": "false"}]}]');
+      
+      // Zdog initialization and rendering
+      function initZdogScene(sceneKey) {
+        // Clear any existing animation
+        if (currentScene && currentScene.animation) {
+          cancelAnimationFrame(currentScene.animation);
+        }
+        
+        // Create new Illustration with isometric projection settings, drag disabled like check scene
+        const illo = new Zdog.Illustration({
+          element: zdogCanvas,
+          dragRotate: false, // Disable mouse interaction like check scene
+          // Use saved rotation if available, otherwise use default isometric rotation
+          rotate: { ...lastRotation }, // Apply the last known rotation
         });
-      </script>
+        
+        // Load the scene configuration
+        const sceneConfig = zdogSceneData.scenes[sceneKey] || { shapes: [] };
+        
+        // Create shapes based on configuration
+        createShapesFromConfig(illo, sceneConfig);
+        
+        // Animation loop
+        function animate() {
+          if (isSpinning) {
+            illo.rotate.y += 0.01;
+          }
+          illo.updateRenderGraph();
+          currentScene.animation = requestAnimationFrame(animate);
+        }
+        
+        // Store the scene
+        currentScene = {
+          illo: illo,
+          animation: requestAnimationFrame(animate)
+        };
+        
+        return currentScene;
+      }
+      
+      // Function to create Zdog shapes from config
+      function createShapesFromConfig(illo, config) {
+        // Process each shape in the configuration
+        config.shapes.forEach(shapeConfig => {
+          createZdogShape(illo, shapeConfig);
+        });
+        
+        // No grid, axes, or reference markers are added - keeping visualization clean
+      }
+      
+      // Helper function to create individual shapes
+      function createZdogShape(illo, shapeConfig) {
+        // Skip unsupported shape types
+        if (shapeConfig.type === 'Text') {
+          console.log(`Skipping unsupported shape type: Text (ID: ${shapeConfig.id || 'unnamed'})`);
+          
+          // If this text has children, create them under the parent instead
+          if (shapeConfig.children && shapeConfig.children.length) {
+            const parent = shapeConfig.parent ? findParentShape(illo, shapeConfig.parent) : illo;
+            shapeConfig.children.forEach(childConfig => {
+              // Set the same parent for all children
+              const childWithParent = {...childConfig, parent: shapeConfig.parent};
+              createZdogShape(illo, childWithParent);
+            });
+          }
+          
+          return null;
+        }
+        
+        const ShapeClass = Zdog[shapeConfig.type];
+        if (!ShapeClass) {
+          console.warn(`Shape type not found: ${shapeConfig.type}. Supported types: ${Object.keys(Zdog).filter(key => typeof Zdog[key] === 'function').join(', ')}`);
+          return null;
+        }
+        
+        // Find parent shape if specified
+        let parent = illo;
+        if (shapeConfig.parent) {
+          parent = findParentShape(illo, shapeConfig.parent);
+        }
+        
+        try {
+          // Create the shape with configuration
+          const shapeOptions = { ...shapeConfig.options, addTo: parent };
+          const shape = new ShapeClass(shapeOptions);
+          
+          // Add any child shapes
+          if (shapeConfig.children && shapeConfig.children.length) {
+            shapeConfig.children.forEach(childConfig => {
+              // Set parent to the current shape
+              createZdogShape(shape, childConfig);
+            });
+          }
+          
+          // Store shape with ID if specified
+          if (shapeConfig.id) {
+            illo.shapes = illo.shapes || {};
+            illo.shapes[shapeConfig.id] = shape;
+          }
+          
+          return shape;
+        } catch (e) {
+          console.error(`Error creating ${shapeConfig.type} shape:`, e);
+          return null;
+        }
+      }
+      
+      // Helper function to find a parent shape by ID
+      function findParentShape(illo, parentId) {
+        if (!illo.shapes || !illo.shapes[parentId]) {
+          console.warn(`Parent shape not found: ${parentId}`);
+          return illo;
+        }
+        return illo.shapes[parentId];
+      }
+      
+      // Function to display a consistent scene throughout
+      function displayZdogScene(section, index) {
+        // For comprehend and compute sections, we'll use the same scene with both boxes
+        if (section === 'comprehend' || section === 'compute') {
+          const key = 'comprehend_2'; // Using this scene as the base since it has both boxes
+          
+          // If we already have this scene, don't reinitialize
+          if (key === currentSceneKey && currentScene && currentScene.illo) {
+            console.log(`Scene ${key} already displayed, keeping rotation`);
+            return;
+          }
+          
+          // Save current rotation if we have a scene
+          if (currentScene && currentScene.illo) {
+            lastRotation = {
+              x: currentScene.illo.rotate.x,
+              y: currentScene.illo.rotate.y,
+              z: currentScene.illo.rotate.z
+            };
+          }
+          
+          // Save current scene key
+          currentSceneKey = key;
+          
+          // Initialize the scene
+          initZdogScene(key);
+          console.log(`Displayed consistent scene for ${section}`);
+        } 
+        // For check section, use the dedicated visualization
+        else if (section === 'check') {
+          const key = `${section}_1`;
+          
+          // Save current rotation if we have a scene
+          if (currentScene && currentScene.illo) {
+            lastRotation = {
+              x: currentScene.illo.rotate.x,
+              y: currentScene.illo.rotate.y,
+              z: currentScene.illo.rotate.z
+            };
+          }
+          
+          // Save current scene key
+          currentSceneKey = key;
+          
+          // Initialize the scene
+          if (zdogSceneData.scenes[key]) {
+            initZdogScene(key);
+            console.log(`Displayed check scene: ${key}`);
+          } else {
+            console.warn(`Check scene not found: ${key}`);
+          }
+        }
+        // For connect section, use the connect scene
+        else if (section === 'connect') {
+          const key = `${section}_1`;
+          
+          // Save current rotation if we have a scene
+          if (currentScene && currentScene.illo) {
+            lastRotation = {
+              x: currentScene.illo.rotate.x,
+              y: currentScene.illo.rotate.y,
+              z: currentScene.illo.rotate.z
+            };
+          }
+          
+          // Save current scene key
+          currentSceneKey = key;
+          
+          // Initialize the scene
+          if (zdogSceneData.scenes[key]) {
+            initZdogScene(key);
+            console.log(`Displayed connect scene: ${key}`);
+          } else {
+            console.warn(`Connect scene not found: ${key}`);
+          }
+        }
+      }
+      
+      // Step Navigation
+      function showStep(step) {
+        // Update UI
+        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+        document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+        currentStep = step;
+        
+        // Reset container
+        equationContainer.innerHTML = '';
+        
+        // Hide overlays by default
+        connectOverlay.classList.add('hidden');
+        checkOverlay.classList.add('hidden');
+        
+        // Show/hide previous button
+        previousButton.classList.toggle('hidden', step === 'comprehend');
+        
+        // Initialize appropriate Zdog scene based on step
+        if (step === 'comprehend') {
+          // Hide visualization initially in comprehend step
+          visualizationArea.classList.add('hidden');
+          displayZdogScene('comprehend', 1);
+          showComprehendContent();
+          nextButton.onclick = advanceComprehend;
+        } 
+        else if (step === 'connect') {
+          displayZdogScene('connect', 1);
+          connectOverlay.classList.remove('hidden');
+          connectSubStep = 0;
+          showConnectQuestion();
+          nextButton.classList.add('hidden');
+        } 
+        else if (step === 'compute') {
+          displayZdogScene('compute', 1);
+          // Reset next button text from previous steps
+          nextButton.textContent = 'Next';
+          showComputeSteps();
+          // Note: showComputeSteps will set up the proper nextButton.onclick handler
+        } 
+        else if (step === 'check') {
+          displayZdogScene('check', 1);
+          checkOverlay.classList.remove('hidden');
+          nextButton.classList.add('hidden');
+          initCheckSlider();
+        }
+      }
+      
+      // Comprehend Step
+      function showComprehendContent() {
+        // Create given and to-find sections
+        const givenSection = document.createElement('div');
+        givenSection.className = 'given-section';
+        givenSection.id = 'givenSection';
+        const givenHeading = document.createElement('h3');
+        givenHeading.textContent = 'Given:';
+        givenSection.appendChild(givenHeading);
+        
+        const toFindSection = document.createElement('div');
+        toFindSection.className = 'tofind-section';
+        toFindSection.id = 'toFindSection';
+        const toFindHeading = document.createElement('h3');
+        toFindHeading.textContent = 'To Find:';
+        toFindSection.appendChild(toFindHeading);
+        
+        // Add sections to equation container
+        equationContainer.appendChild(givenSection);
+        equationContainer.appendChild(toFindSection);
+        
+        // Hide sections initially
+        givenSection.style.display = 'none';
+        toFindSection.style.display = 'none';
+      }
+      // Function to animate text from highlighted element to given/tofind section
+      function animateText(element, displayText, targetSection, isGiven) {
+        // Highlight the clicked element
+        if (element) {
+          element.style.backgroundColor = isGiven ? "rgba(255, 182, 193, 0.3)" : "rgba(100, 149, 237, 0.3)";
+        } else {
+          console.error("Element not found for animation");
+          return;
+        }
+        
+        // Create a clone element for animation
+        const clone = document.createElement("span");
+        clone.textContent = displayText;
+        clone.classList.add("clone");
+        clone.style.color = isGiven ? "#f47983" : "#5b9bd5";
+        clone.style.position = "absolute";
+        clone.style.zIndex = "1000";
+        clone.style.transition = "transform 0.8s ease-in-out, opacity 0.8s ease-in-out";
+        
+        // Position the clone at the clicked element's position
+        const rect = element.getBoundingClientRect();
+        clone.style.left = `${rect.left}px`;
+        clone.style.top = `${rect.top}px`;
+        clone.style.opacity = "1";
+        document.body.appendChild(clone);
+        
+        // Make sure the target section exists
+        if (!targetSection) {
+          console.error("Target section not found");
+          return;
+        }
+        
+        // Create a paragraph element to add to the target section
+        const paragraph = document.createElement("p");
+        paragraph.innerHTML = displayText;
+        
+        // Animate the clone to the target section
+        setTimeout(() => {
+          const appendRect = targetSection.getBoundingClientRect();
+          const targetX = appendRect.left + 10;
+          const targetY = appendRect.top + 30;
+          
+          clone.style.transform = `translate(${targetX - rect.left}px, ${targetY - rect.top}px)`;
+          clone.style.opacity = "0.9";
+          
+          // Add the paragraph to the target section in sync with the animation
+          targetSection.appendChild(paragraph);
+        }, 50);
+        
+        // Remove the clone after animation completes
+        setTimeout(() => {
+          document.body.removeChild(clone);
+          element.style.backgroundColor = "";
+        }, 800);
+      }
+      
+      function advanceComprehend() {
+        const givenSection = document.getElementById('givenSection');
+        const toFindSection = document.getElementById('toFindSection');
+        
+        if (comprehendSubStep === 0) {
+          // Show given section
+          givenSection.style.display = 'block';
+          
+          // Keep visualization area hidden during Given step
+          visualizationArea.classList.add('hidden');
+          
+          // Get all highlighted given elements
+          const givenElements = document.querySelectorAll('.highlight-given');
+          
+          // If no elements found, just add the text directly to the section
+          if (givenElements.length === 0) {
+            givenItems.forEach(item => {
+              const p = document.createElement('p');
+              p.textContent = item;
+              givenSection.appendChild(p);
+            });
+          } else {
+            // Animate given information for each highlighted item
+            givenElements.forEach((element, index) => {
+              if (index < givenItems.length) {
+                setTimeout(() => {
+                  animateText(element, givenItems[index], givenSection, true);
+                }, index * 500);
+              }
+            });
+          }
+          
+          comprehendSubStep = 1;
+        } 
+        else if (comprehendSubStep === 1) {
+          // Show to find section
+          toFindSection.style.display = 'block';
+          
+          // Show visualization area when the To Find section is displayed
+          visualizationArea.classList.remove('hidden');
+          
+          // Get all highlighted to-find elements
+          const toFindElements = document.querySelectorAll('.highlight-tofind');
+          
+          // If no elements found, just add the text directly to the section
+          if (toFindElements.length === 0) {
+            toFindItems.forEach(item => {
+              const p = document.createElement('p');
+              p.textContent = item;
+              toFindSection.appendChild(p);
+            });
+          } else {
+            // Animate to-find information for each highlighted item
+            toFindElements.forEach((element, index) => {
+              if (index < toFindItems.length) {
+                setTimeout(() => {
+                  animateText(element, toFindItems[index], toFindSection, false);
+                }, index * 500);
+              }
+            });
+          }
+          
+          // Update visualization
+          displayZdogScene('comprehend', 2);
+          
+          comprehendSubStep = 2;
+          
+          // Change next button to advance to connect step
+          setTimeout(() => {
+            nextButton.onclick = () => showStep('connect');
+          }, Math.max(500, toFindElements.length * 500));
+        }
+      }
+      
+      // Connect Step
+      function showConnectQuestion() {
+        const connectStepArea = document.getElementById('connectStepArea');
+        // Only proceed if we have questions
+        if (!connectQuestions || connectQuestions.length === 0) {
+          console.error("No connect questions defined");
+          return;
+        }
+        
+        // Ensure connectQuestions has at least 2 items
+        if (connectQuestions.length === 1) {
+          // Duplicate the first question if only one exists
+          connectQuestions.push({...connectQuestions[0]});
+          console.log("Added duplicate question since only one was provided");
+        }
+        
+        // Render the left side steps
+        connectStepArea.innerHTML = '';
+        
+        // Build the equation boxes for left side one by one
+        for (let i = 0; i < connectQuestions.length; i++) {
+          const q = connectQuestions[i];
+          const box = document.createElement('div');
+          box.classList.add('equation-box');
+          
+          // Get appropriate left content based on CSV structure
+          // The CSV processor creates questions with 'question' field, not 'left'/'right'
+          let leftContent = '';
+          if (q.left) {
+            leftContent = q.left;
+          } else if (q.question) {
+            // If we have options, make a nice format for left side
+            const correctOption = q.options?.find(opt => opt.correct === "true" || opt.correct === true);
+            leftContent = correctOption ? `${q.question.split('?')[0]}?` : q.question;
+          } else {
+            leftContent = `Question ${i+1}`;
+          }
+          
+          // Three states:
+          // 1. Already solved (show postSolve)
+          // 2. Current question (active)
+          // 3. Future question (inactive)
+          if (i < connectSubStep) {
+            // Solved question
+            box.innerHTML = `<span>${q.postSolve || leftContent}</span>`;
+          } else if (i === connectSubStep) {
+            // Current question
+            box.classList.add('active');
+            box.innerHTML = `<span>${leftContent}</span>`;
+          } else {
+            // Future question
+            box.classList.add('inactive');
+            box.innerHTML = `<span>${leftContent}</span>`;
+          }
+          
+          connectStepArea.appendChild(box);
+        }
+        
+        // Get the current question
+        const question = connectQuestions[connectSubStep];
+        
+        // Set the right side question
+        const connectQuestionBox = document.getElementById('connectQuestionBox');
+        
+        // Determine question content
+        let questionContent = '';
+        if (question.right) {
+          questionContent = question.right;
+        } else if (question.question) {
+          questionContent = question.question;
+        } else {
+          questionContent = `What is the answer to question ${connectSubStep + 1}?`;
+        }
+        
+        connectQuestionBox.innerHTML = `<span>${questionContent}</span>`;
+        
+        // Clear previous options
+        mcqOptions.innerHTML = '';
+        
+        // Shuffle options to randomize answer order
+        const shuffledOptions = [...question.options];
+        for (let i = shuffledOptions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+        }
+        
+        // Add options in shuffled order
+        shuffledOptions.forEach(option => {
+          const button = document.createElement('button');
+          button.className = 'mcq-btn';
+          button.textContent = option.text;
+          button.setAttribute('data-correct', option.correct);
+          
+          button.onclick = function() {
+            const isCorrect = this.getAttribute('data-correct') === 'true';
+            handleMCQSelection(this, isCorrect);
+          };
+          
+          mcqOptions.appendChild(button);
+        });
+        
+        // Reset feedback and next button
+        feedback.textContent = '';
+        connectNextButton.disabled = true;
+        
+        // Reset overlay color
+        const overlayContent = connectOverlay.querySelector('.overlay-content');
+        overlayContent.classList.remove('correct', 'incorrect');
+      }
+      
+      function handleMCQSelection(button, isCorrect) {
+        const allButtons = mcqOptions.querySelectorAll('.mcq-btn');
+        const overlayContent = connectOverlay.querySelector('.overlay-content');
+        
+        // Disable all buttons initially
+        allButtons.forEach(btn => {
+          btn.classList.add('disabled');
+        });
+        
+        if (isCorrect) {
+          button.classList.add('correct');
+          button.classList.remove('incorrect');
+          feedback.textContent = 'Correct!';
+          feedback.style.color = '#6aa84f';
+          connectNextButton.disabled = false;
+          overlayContent.classList.add('correct');
+          overlayContent.classList.remove('incorrect');
+          
+          // Keep other buttons disabled
+          allButtons.forEach(btn => {
+            if (btn !== button) {
+              btn.classList.add('disabled');
+            }
+          });
+        } else {
+          button.classList.add('incorrect');
+          button.classList.remove('correct');
+          feedback.textContent = 'Try again!';
+          feedback.style.color = '#cc0000';
+          overlayContent.classList.add('incorrect');
+          overlayContent.classList.remove('correct');
+          
+          // Re-enable all buttons after a delay
+          setTimeout(() => {
+            allButtons.forEach(btn => {
+              btn.classList.remove('disabled', 'incorrect');
+            });
+            feedback.textContent = '';
+          }, 1500);
+        }
+      }
+      
+      function handleConnectNext() {
+        if (connectSubStep < connectQuestions.length - 1) {
+          // Show next question
+          connectSubStep++;
+          showConnectQuestion();
+        } else {
+          // End of connect section, show summary
+          connectOverlay.classList.add('hidden');
+          document.getElementById('summaryOverlay').classList.remove('hidden');
+          showSummary();
+        }
+      }
+      
+      function showSummary() {
+        const summaryContent = document.getElementById('summaryContent');
+        summaryContent.innerHTML = '';
+        
+        // Add all solved questions to the summary
+        connectQuestions.forEach((q) => {
+          const box = document.createElement('div');
+          box.className = 'equation-box';
+          
+          // Get appropriate left content using same logic as showConnectQuestion
+          let leftContent = '';
+          if (q.left) {
+            leftContent = q.left;
+          } else if (q.question) {
+            // If we have options, make a nice format for left side
+            const correctOption = q.options?.find(opt => opt.correct === "true" || opt.correct === true);
+            leftContent = correctOption ? `${q.question.split('?')[0]}?` : q.question;
+          } else {
+            leftContent = `Question`;
+          }
+          
+          // Get appropriate right/question content
+          let questionContent = '';
+          if (q.right) {
+            questionContent = q.right;
+          } else if (q.question) {
+            questionContent = q.question;
+          } else {
+            questionContent = '';
+          }
+          
+          // Avoid showing duplicate text if left and right would be the same
+          const displayQuestion = leftContent === questionContent ? '' : questionContent;
+          
+          box.innerHTML = `<div style="margin-bottom: 10px;"><strong>${leftContent}</strong> ${displayQuestion}</div>
+                          <div>${q.postSolve || 'Answer: ' + q.options.find(o => o.correct).text}</div>`;
+          summaryContent.appendChild(box);
+        });
+        
+        // Setup summary next button
+        document.getElementById('summaryNextButton').onclick = () => {
+          document.getElementById('summaryOverlay').classList.add('hidden');
+          nextButton.classList.remove('hidden');
+          showStep('compute');
+        };
+      }
+      
+      // Compute Step
+      let computeSubStep = 0;
+      
+      function showComputeSteps() {
+        // Reset compute step and UI
+        computeSubStep = 0;
+        equationContainer.innerHTML = '';
+        
+        // Create container for compute steps with styling matching tofind-section
+        const stepsContainer = document.createElement('div');
+        stepsContainer.id = 'computeStepsContainer';
+        stepsContainer.className = 'compute-steps-container';
+        stepsContainer.style.backgroundColor = '#f5f5f5';
+        stepsContainer.style.borderRadius = '8px';
+        stepsContainer.style.padding = '15px';
+        stepsContainer.style.borderLeft = '4px solid #5b9bd5';
+        equationContainer.appendChild(stepsContainer);
+        
+        // Setup next button for compute step animation
+        nextButton.onclick = advanceComputeStep;
+        
+        // Initialize with first compute step if available
+        if (computeSteps.length > 0) {
+          advanceComputeStep();
+        } else {
+          // If no compute steps defined, show placeholder
+          const placeholder = document.createElement('div');
+          placeholder.className = 'equation-step';
+          placeholder.textContent = 'No computation steps available.';
+          stepsContainer.appendChild(placeholder);
+          
+          // Change next button to advance to check step
+          nextButton.onclick = () => showStep('check');
+        }
+      }
+      
+      function advanceComputeStep() {
+        const stepsContainer = document.getElementById('computeStepsContainer');
+        
+        // If we've gone through all steps, move to the check step
+        if (computeSubStep >= computeSteps.length) {
+          // Immediately go to check step instead of waiting for another click
+          showStep('check');
+          return;
+        }
+        
+        // Add the next compute step
+        const stepElement = document.createElement('div');
+        stepElement.className = 'equation-step';
+        stepElement.textContent = computeSteps[computeSubStep];
+        
+        // Apply animation effect
+        stepElement.style.opacity = '0';
+        stepElement.style.transform = 'translateY(20px)';
+        stepElement.style.transition = 'opacity 0.5s, transform 0.5s';
+        
+        stepsContainer.appendChild(stepElement);
+        
+        // Update visualization
+        const sceneIndex = Math.min(computeSubStep + 1, 4); // Limit to 4 scenes
+        displayZdogScene('compute', sceneIndex);
+        
+        // Trigger animation after adding to DOM
+        setTimeout(() => {
+          stepElement.style.opacity = '1';
+          stepElement.style.transform = 'translateY(0)';
+        }, 50);
+        
+        // Increment for next step
+        computeSubStep++;
+        
+        // If this was the last step, change button text to indicate moving to check
+        if (computeSubStep >= computeSteps.length) {
+          nextButton.textContent = 'Next: Check';
+        }
+      }
+      
+      // Check Step - Direct volume visualization
+      let checkScene = null;
+      let checkIsSpinning = true;
+      let checkLastRotation = { x: -Math.PI/6, y: Math.PI/4, z: 0 }; // Default rotation for check scenes
+      
+      function initCheckSlider() {
+        // Get check-specific canvas
+        const checkZdogCanvas = document.getElementById('checkZdogCanvas');
+        
+        // Note: We've removed the control buttons for a cleaner interface
+        console.log("Initializing check slider visualization");
+        
+        // Set up auto-rotation for check visualization
+        checkIsSpinning = true;
+        
+        // Create the initial box visualization
+        createVolumeBoxVisualization();
+        
+        // Set up check slider
+        checkSlider.oninput = updateVolumeBox;
+        updateVolumeBox(); // Initialize with first volume
+        
+        console.log("Check slider visualization initialized successfully");
+      }
+      
+      function createVolumeBoxVisualization() {
+        // Clear any existing animation
+        if (checkScene && checkScene.animation) {
+          cancelAnimationFrame(checkScene.animation);
+        }
+        
+        const checkZdogCanvas = document.getElementById('checkZdogCanvas');
+        
+        // Create new Illustration with isometric projection settings and disable dragging
+        const illo = new Zdog.Illustration({
+          element: checkZdogCanvas,
+          dragRotate: false, // Disabled mouse interaction
+          rotate: { ...checkLastRotation }
+        });
+        
+        // Create a box group
+        const boxGroup = new Zdog.Group({
+          addTo: illo,
+          updateSort: true
+        });
+        
+        // Create the box with colors matching the SVG
+        const box = new Zdog.Box({
+          addTo: boxGroup,
+          width: 160, // 16 cm × 10 units/cm
+          height: 50,  // Will be adjusted based on volume
+          depth: 50,   // Will be adjusted based on volume
+          stroke: 0,
+          fill: true,
+          color: '#fad7d7',     // Front/main face color
+          frontFace: '#fad7d7', // Light pink
+          rearFace: '#fad7d7',  // Light pink
+          leftFace: '#c7abab',  // Darker pinkish
+          rightFace: '#c7abab', // Darker pinkish
+          topFace: '#fbdfdf',   // Very light pink
+          bottomFace: '#fbdfdf' // Very light pink
+        });
+        
+        // Add wireframe with steel blue stroke color
+        const wireframe = new Zdog.Box({
+          addTo: boxGroup,
+          width: 160,
+          height: 50,
+          depth: 50,
+          stroke: 2.5,
+          fill: false,
+          color: '#4682b4' // Steel blue stroke
+        });
+        
+        // No reference lines, grid, or axes for cleaner visualization
+        
+        // Store references for animation
+        illo.box = box;
+        illo.wireframe = wireframe;
+        
+        // Animation loop
+        function animate() {
+          if (checkIsSpinning) {
+            illo.rotate.y += 0.01;
+          }
+          illo.updateRenderGraph();
+          checkScene.animation = requestAnimationFrame(animate);
+        }
+        
+        // Store the scene
+        checkScene = {
+          illo: illo,
+          animation: requestAnimationFrame(animate)
+        };
+        
+        return checkScene;
+      }
+      
+      function updateVolumeBox() {
+        // Get direct step from slider (now 0-3)
+        const stepIndex = parseInt(checkSlider.value);
+        console.log("Current step index:", stepIndex);
+        
+        // Predefined volume steps
+        const volumeSteps = [400, 600, 800, 1000];
+        const volume = volumeSteps[stepIndex];
+        console.log("Current volume:", volume);
+        
+        // Calculate length based on the formula V = w × l × h = 16 × l × l (since l = h)
+        // So l = sqrt(V / 16)
+        const width = 16; // Fixed width
+        const length = Math.sqrt(volume / width);
+        console.log("Calculated length/height:", length);
+        
+        // Format values for display with 1 decimal place
+        const displayLength = Math.round(length * 10) / 10;
+        
+        if (checkScene && checkScene.illo) {
+          // Update box dimensions with 10 units = 1 cm scale
+          const newWidth = 160;          // 16cm × 10 units/cm
+          const newHeight = length * 10; // l cm × 10 units/cm
+          console.log("Setting box height/depth to:", newHeight);
+          
+          // Update main box
+          if (checkScene.illo.box) {
+            checkScene.illo.box.width = newWidth;
+            checkScene.illo.box.height = newHeight;
+            checkScene.illo.box.depth = newHeight; // depth = height (l = h)
+            
+            // Change box color for each step for visual differentiation
+            const colors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6'];
+            checkScene.illo.box.color = colors[stepIndex];
+            checkScene.illo.box.updatePath();
+          }
+          
+          // Update wireframe
+          if (checkScene.illo.wireframe) {
+            checkScene.illo.wireframe.width = newWidth;
+            checkScene.illo.wireframe.height = newHeight;
+            checkScene.illo.wireframe.depth = newHeight;
+            checkScene.illo.wireframe.updatePath();
+          }
+          
+          // Save current rotation for next update
+          checkLastRotation = {
+            x: checkScene.illo.rotate.x,
+            y: checkScene.illo.rotate.y,
+            z: checkScene.illo.rotate.z
+          };
+          
+          // Force redraw
+          checkScene.illo.updateRenderGraph();
+        }
+        
+        // Update check step title with minimal text
+        const checkStepTitle = document.getElementById('checkStepTitle');
+        
+        // Minimal content showing just the current volume and dimensions
+        const titleContent = `
+          <div style="text-align: center; margin-bottom: 15px; font-size: 1.2rem;">
+            <h3 style="margin-bottom: 10px; color: #5b9bd5; font-size: 1.5rem;">Step ${stepIndex}: Volume = ${volume} cm³</h3>
+            
+            <div style="background-color: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 15px; text-align: center;">
+              <p>Width: 16 cm (fixed)</p>
+              <p>Length = Height: ${displayLength} cm</p>
+            </div>
+          </div>
+        `;
+        
+        // Set the formatted HTML content
+        checkStepTitle.innerHTML = titleContent;
+      }
+      
+      // Reset App
+      function resetApp() {
+        currentStep = 'comprehend';
+        comprehendSubStep = 0;
+        connectSubStep = 0;
+        checkOverlay.classList.add('hidden');
+        nextButton.classList.remove('hidden');
+        showStep('comprehend');
+      }
+      
+      // Handle Zdog controls
+      resetViewBtn.addEventListener('click', () => {
+        if (currentScene && currentScene.illo) {
+          // Reset to isometric view
+          currentScene.illo.rotate.x = -Math.PI/6;
+          currentScene.illo.rotate.y = Math.PI/4;
+          currentScene.illo.rotate.z = 0;
+          currentScene.illo.updateRenderGraph();
+        }
+      });
+      
+      autoRotateBtn.addEventListener('click', () => {
+        isSpinning = !isSpinning;
+        autoRotateBtn.textContent = isSpinning ? 'Stop Rotation' : 'Auto Rotate';
+      });
+      
+      // Event Listeners
+      previousButton.addEventListener('click', () => {
+        if (currentStep === 'connect') {
+          showStep('comprehend');
+        } else if (currentStep === 'compute') {
+          // From compute, go back to connect with summary view
+          document.getElementById('summaryOverlay').classList.remove('hidden');
+          showSummary();
+        } else if (currentStep === 'check') {
+          showStep('compute');
+        }
+      });
+      
+      connectNextButton.addEventListener('click', handleConnectNext);
+      resetButton.addEventListener('click', resetApp);
+      
+      // Initialize the app
+      showStep('comprehend');
+    });
+  </script>
+</body>
+</html>
