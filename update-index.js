@@ -63,16 +63,18 @@ function updateIndexHtml(applets) {
   
   // Create HTML for all applet cards
   const appletCardsHtml = applets.map(applet => `
-      <div class="applet-card">
-        <h3>${applet.title.replace(' Challenge', '')}</h3>
-        <p>Interactive visualization for ${applet.title.toLowerCase()}</p>
-        <a href="${encodeURIComponent(applet.name)}/">Launch Applet</a>
-      </div>
+    <div class="card">
+        <div class="card-content">
+            <h2 class="card-title">${applet.title.replace(' Challenge', '')}</h2>
+            <p class="card-description">Interactive visualization for ${applet.title.toLowerCase()}</p>
+        </div>
+        <a href="./${encodeURIComponent(applet.name)}/" class="card-button">Open Applet</a>
+    </div>
   `).join('\n');
   
   // Replace the applet container content
-  const startMarker = '<div class="applet-grid" id="applet-container">';
-  const endMarker = '</div>';
+  const startMarker = '<div class="cards-container">';
+  const endMarker = '</div><!-- end cards -->';
   
   // Find the position of the markers
   const startPos = content.indexOf(startMarker);
@@ -100,7 +102,11 @@ try {
   
   if (applets.length > 0) {
     updateIndexHtml(applets);
-    console.log('Index updated successfully');
+    console.log(`Index updated successfully with ${applets.length} applets`);
+    console.log('Cards added for:');
+    applets.forEach(applet => {
+      console.log(`  - ${applet.title} (${applet.name})`);
+    });
   } else {
     console.log('No applets found, index not updated');
   }
