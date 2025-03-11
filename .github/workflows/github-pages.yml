@@ -32,7 +32,6 @@ jobs:
       
       - name: Update index file
         run: |
-          cd simple-applet-generator/publicApplets
           node update-index.js
           
       - name: Setup Pages
@@ -41,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'simple-applet-generator/publicApplets'  # Upload the publicApplets directory
+          path: '.'  # Upload root directory (which is publicApplets)
       
       - name: Deploy to GitHub Pages
         id: deployment
