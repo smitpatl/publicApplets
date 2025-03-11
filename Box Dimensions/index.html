@@ -500,7 +500,7 @@
         <canvas id="checkZdogCanvas" width="400" height="400"></canvas>
         <!-- Controls for check visualization -->
         <div class="zdog-controls" style="display: flex;">
-          <button id="toggleRotationBtn">Toggle Rotation</button>
+          <button id="checkToggleRotationBtn">Toggle Rotation</button>
           <button id="resetCheckViewBtn">Reset View</button>
         </div>
       </div>
@@ -2575,7 +2575,6 @@
         
         // Set up rotation controls
         const resetCheckViewBtn = document.getElementById('resetCheckViewBtn');
-        const toggleRotationBtn = document.getElementById('toggleRotationBtn');
         
         // Reset view button
         resetCheckViewBtn.addEventListener('click', () => {
@@ -2595,13 +2594,14 @@
           }
         });
         
-        // Toggle rotation button
-        toggleRotationBtn.addEventListener('click', () => {
+        // Toggle rotation button for check view
+        const checkToggleRotationBtn = document.getElementById('checkToggleRotationBtn');
+        checkToggleRotationBtn.addEventListener('click', () => {
           // Toggle the rotation state
           checkIsSpinning = !checkIsSpinning;
           
           // Update button text based on state
-          toggleRotationBtn.textContent = checkIsSpinning ? 'Stop Rotation' : 'Toggle Rotation';
+          checkToggleRotationBtn.textContent = checkIsSpinning ? 'Stop Rotation' : 'Toggle Rotation';
           
           // No need to update lastRotation since we're just toggling animation
         });
@@ -2787,13 +2787,13 @@
               { x: 0, y: 40, z: 0 }
             );
             
-            // Length/height label (l = h)
+            // Length/height label (l = h) with adjusted rotation to prevent flipping
             addLabelWithBackground(
               textGroup,
               stepIndex === 0 ? `l = h = ?` : `l = h = ${displayLength} cm`,
               14,
               { x: 90, y: 0, z: 0 },
-              { y: Math.PI/2 }
+              { y: Math.PI/2, x: 0 }
             );
             
             // Volume label
