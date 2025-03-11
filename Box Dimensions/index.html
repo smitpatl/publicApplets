@@ -6,6 +6,8 @@
   <title>Box Dimensions Challenge</title>
   <!-- Zdog library - using parent directory version -->
   <script src="../js/zdog.dist.min.js"></script>
+  <!-- ZFont library for text labels -->
+  <script src="../js/zfont.min.js"></script>
   <style>
     /* Reset and base styles */
     * {
@@ -1636,6 +1638,14 @@
       const computeSteps = JSON.parse('["Step 1: Calculate the volume of the original box", "Volume = length \\u00d7 width \\u00d7 height = 8 cm \\u00d7 6 cm \\u00d7 12 cm = 576 cm\\u00b3", "Step 2: Set up equation for the new box", "Volume = width \\u00d7 length \\u00d7 height = 16 cm \\u00d7 l \\u00d7 h = 576 cm\\u00b3", "Step 3: Use the constraint l = h", "Volume = 16 cm \\u00d7 l \\u00d7 l = 16l\\u00b2 cm\\u00b3 = 576 cm\\u00b3", "Step 4: Solve for l", "16l\\u00b2 = 576\\nl\\u00b2 = 576 \\u00f7 16 = 36\\nl = \\u221a36 = 6 cm", "Step 5: Since l = h, we have h = 6 cm"]');
       const connectQuestions = JSON.parse('[{"question": "To find the length and height of a box using its volume and width, which formula should we use?", "options": [{"text": "Length = \\u221a(Volume \\u00f7 Width) when Length = Height", "correct": "true"}, {"text": "Length = Volume \\u00d7 Width \\u00d7 Height", "correct": "false"}, {"text": "Length = Volume + Width + Height", "correct": "false"}, {"text": "Length = Volume - (Width \\u00d7 Height)", "correct": "false"}]}, {"question": "When a box is melted and recasted into another shape, what physical property remains the same?", "options": [{"text": "The volume", "correct": "true"}, {"text": "The surface area", "correct": "false"}, {"text": "The dimensions", "correct": "false"}, {"text": "The shape", "correct": "false"}]}]');
       
+      // Initialize ZFont with Zdog
+      Zfont.init(Zdog);
+      
+      // Create font object for text labels
+      const boxFont = new Zdog.Font({
+        src: "../js/OpenSans-Regular.ttf" // This will work on GitHub Pages
+      });
+      
       // Zdog initialization and rendering
       function initZdogScene(sceneKey) {
         // Clear any existing animation
@@ -1656,6 +1666,175 @@
         
         // Create shapes based on configuration
         createShapesFromConfig(illo, sceneConfig);
+        
+        // Add dimension labels for cuboids after other shapes are created
+        addDimensionLabels(illo, sceneKey);
+      }
+      
+      // Function to add dimension labels using ZFont
+      function addDimensionLabels(illo, sceneKey) {
+        // Wait for font to load
+        Zdog.waitForFonts().then(() => {
+          // Original box dimensions in cm
+          const originalWidth = 8;
+          const originalHeight = 6;
+          const originalDepth = 12;
+          
+          // New box dimensions
+          const newWidth = 16;
+          const newHeight = 6;
+          const newDepth = 6;
+          
+          if (sceneKey === 'comprehend_2') {
+            // Left cuboid - original box
+            if (illo.shapes && illo.shapes.original_cuboid_group) {
+              // Width label (8 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.original_cuboid_group,
+                font: boxFont,
+                value: `${originalWidth} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2c3e50',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: 40, z: 0 },
+              });
+              
+              // Height label (6 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.original_cuboid_group,
+                font: boxFont,
+                value: `${originalHeight} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2c3e50',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 50, y: 0, z: 0 },
+                rotate: { y: Math.PI/2 }
+              });
+              
+              // Depth label (12 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.original_cuboid_group,
+                font: boxFont,
+                value: `${originalDepth} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2c3e50',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: 0, z: 70 },
+                rotate: { x: Math.PI/2 }
+              });
+            }
+            
+            // Right cuboid - new box
+            if (illo.shapes && illo.shapes.new_cuboid_group) {
+              // Width label (16 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.new_cuboid_group,
+                font: boxFont,
+                value: `${newWidth} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2980b9',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: 40, z: 0 },
+              });
+              
+              // Height label (6 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.new_cuboid_group,
+                font: boxFont,
+                value: `${newHeight} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2980b9',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 90, y: 0, z: 0 },
+                rotate: { y: Math.PI/2 }
+              });
+              
+              // Depth label (6 cm)
+              new Zdog.Text({
+                addTo: illo.shapes.new_cuboid_group,
+                font: boxFont,
+                value: `${newDepth} cm`,
+                fontSize: 12,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#2980b9',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: 0, z: 40 },
+                rotate: { x: Math.PI/2 }
+              });
+            }
+          }
+          
+          // Add labels for other scenes
+          else if (sceneKey === 'compute_1' || sceneKey === 'compute_2' || sceneKey === 'compute_3' || sceneKey === 'compute_4') {
+            // Add similar labels for compute scenes
+            if (illo.shapes && illo.shapes.original_box_volume_group) {
+              // Volume label
+              new Zdog.Text({
+                addTo: illo.shapes.original_box_volume_group,
+                font: boxFont,
+                value: `Volume = ${originalWidth * originalHeight * originalDepth} cm³`,
+                fontSize: 14,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#e74c3c',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: -90, z: 0 },
+              });
+            }
+          }
+          
+          // Add labels for check scene
+          else if (sceneKey.startsWith('check_')) {
+            // Add dynamic volume labels based on the scene
+            if (illo.shapes && illo.shapes.check_original_box) {
+              new Zdog.Text({
+                addTo: illo.shapes.check_original_box,
+                font: boxFont,
+                value: `${originalWidth * originalHeight * originalDepth} cm³`,
+                fontSize: 14,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#27ae60',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: -70, z: 0 },
+              });
+            }
+            
+            if (illo.shapes && illo.shapes.check_new_box) {
+              new Zdog.Text({
+                addTo: illo.shapes.check_new_box,
+                font: boxFont,
+                value: `${newWidth * newHeight * newDepth} cm³`,
+                fontSize: 14,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                color: '#27ae60',
+                fill: true,
+                stroke: 0.5,
+                translate: { x: 0, y: -70, z: 0 },
+              });
+            }
+          }
+        });
         
         // Animation loop
         function animate() {
