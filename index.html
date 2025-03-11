@@ -1,120 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Math Applets</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-    }
-    
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 20px;
-    }
-    
-    h1 {
-      color: #4a86e8;
-    }
-    
-    .applet-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    
-    .applet-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .applet-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-    }
-    
-    .applet-card h3 {
-      margin-top: 0;
-      color: #f47983;
-    }
-    
-    .applet-card a {
-      display: inline-block;
-      margin-top: 10px;
-      background-color: #5b9bd5;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    
-    .applet-card a:hover {
-      background-color: #4a86e8;
-    }
-    
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #777;
-      font-size: 0.9em;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Math Applets</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #4a86e8;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card-content {
+            padding: 20px;
+            flex: 1;
+        }
+        .card-title {
+            margin-top: 0;
+            color: #4a86e8;
+            font-size: 1.5rem;
+        }
+        .card-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        .card-button {
+            display: block;
+            background-color: #4a86e8;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .card-button:hover {
+            background-color: #3a76d8;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Interactive Math Applets</h1>
-    <p>A collection of interactive math visualization applets to help understand mathematical concepts</p>
-  </header>
-  
-  <main>
-    <div class="applet-grid" id="applet-container">
-      <!-- Applet cards dynamically generated -->
-
-      <div class="applet-card">
-        <h3>Box Dimensions</h3>
-        <p>Interactive visualization for box dimensions challenge</p>
-        <a href="Box%20Dimensions/">Launch Applet</a>
-      </div>
-  
-
-      <div class="applet-card">
-        <h3>Box Height</h3>
-        <p>Interactive visualization for box height challenge</p>
-        <a href="Box%20Height/">Launch Applet</a>
-      </div>
-  
+    <header>
+        <h1>Interactive Math Applets</h1>
+    </header>
     
-  
-    
-      
-      <!-- More applets will be added here as they are created -->
+    <div class="container">
+        <p>Welcome to our collection of interactive mathematics applets. These visualizations are designed to help students understand mathematical concepts through interactive learning.</p>
+        
+        <div class="cards-container">
+        <!-- Cards for applets -->
+
+    <div class="card">
+        <div class="card-content">
+            <h2 class="card-title">Box Dimensions</h2>
+            <p class="card-description">A cuboidal box with dimensions 8 cm × 6 cm × 12 cm is melted into another cuboid whose width is 16 cm. Find the length and height of the new cuboid...</p>
+        </div>
+        <a href="./Box Dimensions/" class="card-button">Open Applet</a>
     </div>
-  </main>
-  
-  <footer>
-    <p>Built with Zdog for 3D visualization. Add new applets by creating a folder with an index.html file.</p>
-  </footer>
-  
-  <script>
-    // This script can be expanded in the future to dynamically detect and list applets
-    document.addEventListener('DOMContentLoaded', function() {
-      // Function to dynamically populate applet list can be added here in the future
-    });
-  </script>
+    
+    <div class="card">
+        <div class="card-content">
+            <h2 class="card-title">Box Height</h2>
+            <p class="card-description">Interactive mathematics visualization applet</p>
+        </div>
+        <a href="./Box Height/" class="card-button">Open Applet</a>
+    </div>
+    
+    <div class="card">
+        <div class="card-content">
+            <h2 class="card-title">Measurement Conversion Volume Challenge</h2>
+            <p class="card-description">An aquarium tank is 60 cm long, 30 cm wide, and 45 cm high. If water fills 80% of the tank's volume, how many liters of water are in the tank? (Not...</p>
+        </div>
+        <a href="./MeasurementConversionVolumeChallenge/" class="card-button">Open Applet</a>
+    </div>
+    </div><!-- end cards -->
+        
+        <footer>
+            <p class="last-updated">Last updated: 2025-03-11</p>
+            <p>© 2025 Interactive Math Applets</p>
+        </footer>
+    </div>
 </body>
 </html>
