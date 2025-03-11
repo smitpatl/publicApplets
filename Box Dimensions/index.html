@@ -1793,13 +1793,13 @@
                 { y: Math.PI/2 }
               );
               
-              // Depth label (12 cm)
+              // Depth/Length label (12 cm) - adjusting rotation to prevent flipping
               addLabelWithBackground(
                 illo.shapes.original_cuboid_group,
                 `l = ${originalDepth} cm`,
                 12,
                 { x: 0, y: 0, z: 70 },
-                { x: Math.PI/2 }
+                { x: Math.PI/2, y: 0 }
               );
             }
             
@@ -1822,13 +1822,13 @@
                 { y: Math.PI/2 }
               );
               
-              // Depth label (? cm)
+              // Depth/Length label (? cm) - adjusting rotation to prevent flipping
               addLabelWithBackground(
                 illo.shapes.new_cuboid_group,
                 `l = ?`,
                 12,
                 { x: 0, y: 0, z: 40 },
-                { x: Math.PI/2 }
+                { x: Math.PI/2, y: 0 }
               );
             }
           }
